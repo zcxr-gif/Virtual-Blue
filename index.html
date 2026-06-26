@@ -16,6 +16,15 @@
             --ink:       #0d1b2e;
             --gray:      #5c6878;
             --border:    #dde2ea;
+            /* Winglet accent pops — echoing JetBlue's livery accent palette */
+            --acc-magenta: #e6007e;
+            --acc-violet:  #7b4dff;
+            --acc-teal:    #00b2a9;
+            --acc-orange:  #ff7a00;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -894,6 +903,68 @@
             opacity: 0.1;
             pointer-events: none;
         }
+
+        /* ════════════════════════════════════════════════════════════
+           "Alive" — motion & accent pops inspired by JetBlue's refresh
+           ════════════════════════════════════════════════════════════ */
+
+        /* Moving canvas — tailfin pattern bands drift sideways, the way
+           JetBlue extends a living pattern across the aircraft body */
+        @keyframes band-drift { to { background-position: 240px 0; } }
+        .livery-band {
+            background-repeat: repeat;
+            animation: band-drift 14s linear infinite;
+        }
+        .lb-dots, .lb-stripes { animation-duration: 22s; }
+        .lb-mosaic, .lb-blocks { animation-duration: 30s; }
+
+        /* Floating hero swoosh — gentle lift, like an aircraft on the wind */
+        @keyframes hero-float {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-16px); }
+        }
+        .hero-right .hero-icon { animation: hero-float 6s ease-in-out infinite; }
+
+        /* Winglet accent pops — a flash of colour on each stat, the way
+           JetBlue's all-blue jets carry a single bright winglet */
+        .ticker-num { position: relative; display: inline-block; padding-bottom: 9px; }
+        .ticker-num::after {
+            content: '';
+            position: absolute;
+            left: 50%; bottom: 0;
+            width: 0; height: 3px;
+            border-radius: 2px;
+            transform: translateX(-50%);
+            transition: width 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s;
+        }
+        .ticker.in .ticker-num::after { width: 26px; }
+        .ticker-item:nth-child(1) .ticker-num::after { background: var(--acc-magenta); }
+        .ticker-item:nth-child(2) .ticker-num::after { background: var(--acc-violet); }
+        .ticker-item:nth-child(3) .ticker-num::after { background: var(--acc-teal); }
+        .ticker-item:nth-child(4) .ticker-num::after { background: var(--acc-orange); }
+
+        /* Livery cards lift as a whole and flash an accent name on hover */
+        .livery-card { transition: transform 0.25s ease; }
+        .livery-card:hover { transform: translateY(-6px); }
+        .livery-card .tail-fin { transition: box-shadow 0.25s ease; }
+        .livery-card:hover .tail-fin { box-shadow: 0 14px 32px rgba(0,48,135,0.22); }
+        .livery-card:nth-child(4n+1):hover .livery-name { color: var(--acc-magenta); }
+        .livery-card:nth-child(4n+2):hover .livery-name { color: var(--acc-violet); }
+        .livery-card:nth-child(4n+3):hover .livery-name { color: var(--acc-teal); }
+        .livery-card:nth-child(4n+4):hover .livery-name { color: var(--acc-orange); }
+        .livery-name { transition: color 0.2s ease; }
+
+        /* Join button winglet — a small bright tab that grows on hover */
+        .nav-join { position: relative; overflow: hidden; }
+        .nav-join::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--acc-magenta);
+            transition: width 0.2s ease;
+        }
+        .nav-join:hover::after { width: 6px; }
     </style>
 </head>
 <body>
@@ -1274,6 +1345,33 @@
         entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+    /* Count-up the headline stats when the ticker scrolls into view —
+       a small, lively moment that mirrors JetBlue's energetic feel */
+    function countUp(el) {
+        const m = el.textContent.trim().match(/^(\d+)(.*)$/);
+        if (!m) return;
+        const target = +m[1], suffix = m[2], dur = 1300, start = performance.now();
+        (function tick(now) {
+            const p = Math.min((now - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * eased) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+        })(start);
+    }
+
+    const ticker = document.querySelector('.ticker');
+    if (ticker) {
+        const tObs = new IntersectionObserver((entries, o) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('in');
+                e.target.querySelectorAll('.ticker-num').forEach(countUp);
+                o.unobserve(e.target);
+            });
+        }, { threshold: 0.4 });
+        tObs.observe(ticker);
+    }
 </script>
 
 </body>
