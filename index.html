@@ -3,190 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Blue — A JetBlue Virtual Airline</title>
+    <title>Virtual Blue — Infinite Flight Virtual Airline</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --blue-900: #001f5b;
-            --blue-800: #003087;
-            --blue-700: #0046a8;
-            --blue-600: #005ab5;
-            --blue-500: #009BDE;
-            --blue-400: #00B2E3;
-            --blue-300: #5BCBF5;
-            --blue-200: #a8dffc;
-            --blue-100: #e0f4ff;
-            --teal:     #00B2A9;
-            --white:    #ffffff;
-            --gray-50:  #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-400: #94a3b8;
-            --gray-600: #475569;
-            --gray-800: #1e293b;
-            --gray-900: #0f172a;
+            --blue:      #003087;
+            --blue-mid:  #0050b3;
+            --sky:       #009BDE;
+            --white:     #ffffff;
+            --off-white: #f4f6f9;
+            --ink:       #0d1b2e;
+            --gray:      #5c6878;
+            --border:    #dde2ea;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--gray-900);
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--ink);
             background: var(--white);
             line-height: 1.6;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ─── NAV ─────────────────────────────────────────────────────── */
+        /* ── NAV ──────────────────────────────────────────────────────── */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(0, 48, 135, 0.97);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: var(--blue);
+            height: 60px;
+            display: flex;
+            align-items: center;
         }
 
-        .nav-inner {
-            max-width: 1280px;
+        .nav-wrap {
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-            height: 68px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .nav-logo-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--white);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-logo-icon svg {
-            width: 22px;
-            height: 22px;
-            fill: var(--blue-800);
-        }
-
-        .nav-logo-text {
-            font-size: 1.25rem;
+        .logo {
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--white);
-            letter-spacing: -0.5px;
+            text-decoration: none;
+            letter-spacing: -0.3px;
         }
 
-        .nav-logo-text span {
-            color: var(--blue-300);
-        }
+        .logo span { color: #7ec8f0; }
 
         .nav-links {
-            display: flex;
             list-style: none;
+            display: flex;
             gap: 0.25rem;
         }
 
         .nav-links a {
-            color: rgba(255,255,255,0.85);
+            color: rgba(255,255,255,0.75);
             text-decoration: none;
             font-size: 0.875rem;
             font-weight: 500;
-            padding: 0.5rem 0.875rem;
-            border-radius: 6px;
-            transition: all 0.2s;
+            padding: 0.45rem 0.8rem;
+            border-radius: 5px;
+            transition: color 0.15s, background 0.15s;
         }
 
         .nav-links a:hover {
             color: var(--white);
-            background: rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.1);
         }
 
-        .nav-cta {
+        .nav-join {
             background: var(--white) !important;
-            color: var(--blue-800) !important;
+            color: var(--blue) !important;
             font-weight: 700 !important;
-            padding: 0.5rem 1.25rem !important;
         }
 
-        .nav-cta:hover {
-            background: var(--blue-100) !important;
+        .nav-join:hover {
+            background: #e8f0ff !important;
         }
 
-        /* ─── HERO ────────────────────────────────────────────────────── */
+        /* ── HERO ─────────────────────────────────────────────────────── */
         .hero {
-            min-height: 100vh;
-            background:
-                linear-gradient(160deg, rgba(0,16,60,0.88) 0%, rgba(0,48,135,0.75) 50%, rgba(0,155,222,0.55) 100%),
-                url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=80') center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
+            padding-top: 60px;
+            height: 100vh;
+            min-height: 600px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             overflow: hidden;
         }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 120px;
-            background: linear-gradient(to bottom, transparent, var(--white));
-            pointer-events: none;
+        .hero-left {
+            background: var(--blue);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 3rem 4rem 5rem;
         }
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.25);
-            backdrop-filter: blur(8px);
-            color: var(--white);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+        .hero-eyebrow {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            margin-bottom: 2rem;
+            color: #7ec8f0;
+            margin-bottom: 1.25rem;
         }
 
-        .hero-badge .dot {
-            width: 6px;
-            height: 6px;
-            background: var(--blue-300);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%       { opacity: 0.5; transform: scale(1.4); }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 6vw, 5.5rem);
+        .hero-left h1 {
+            font-size: clamp(2.4rem, 4vw, 3.6rem);
             font-weight: 900;
             color: var(--white);
             line-height: 1.05;
@@ -194,1123 +127,873 @@
             margin-bottom: 1.5rem;
         }
 
-        .hero h1 em {
-            font-style: normal;
-            color: var(--blue-300);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 560px;
+        .hero-left p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.75;
+            max-width: 380px;
             margin-bottom: 2.5rem;
-            font-weight: 400;
-            line-height: 1.7;
         }
 
-        .hero-actions {
+        .hero-btns {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .btn-primary {
-            background: var(--white);
-            color: var(--blue-800);
-            padding: 0.875rem 2.25rem;
-            border-radius: 8px;
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.75rem;
+            border-radius: 6px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-decoration: none;
-            transition: all 0.2s;
-            border: 2px solid var(--white);
-            letter-spacing: -0.3px;
+            transition: all 0.15s;
+            border: 2px solid transparent;
         }
 
-        .btn-primary:hover {
-            background: var(--blue-100);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+        .btn-white {
+            background: var(--white);
+            color: var(--blue);
         }
 
-        .btn-ghost {
+        .btn-white:hover {
+            background: #e8f0ff;
+        }
+
+        .btn-outline {
             background: transparent;
+            border-color: rgba(255,255,255,0.35);
             color: var(--white);
-            padding: 0.875rem 2.25rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: 2px solid rgba(255,255,255,0.45);
         }
 
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.12);
-            border-color: rgba(255,255,255,0.8);
-            transform: translateY(-2px);
+        .btn-outline:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.08);
         }
 
-        .hero-stats {
-            position: absolute;
-            bottom: 140px;
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            display: block;
+        }
+
+        /* ── TICKER BAR ───────────────────────────────────────────────── */
+        .ticker {
+            background: var(--off-white);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
             display: flex;
-            gap: 3rem;
+            overflow: hidden;
         }
 
-        .stat {
+        .ticker-inner {
+            display: flex;
+            width: 100%;
+        }
+
+        .ticker-item {
+            flex: 1;
+            padding: 1.4rem 2rem;
+            border-right: 1px solid var(--border);
             text-align: center;
-            color: var(--white);
         }
 
-        .stat-number {
-            font-size: 2.2rem;
-            font-weight: 900;
+        .ticker-item:last-child { border-right: none; }
+
+        .ticker-num {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--blue);
             letter-spacing: -1px;
             line-height: 1;
         }
 
-        .stat-label {
-            font-size: 0.8rem;
+        .ticker-label {
+            font-size: 0.75rem;
+            color: var(--gray);
             font-weight: 500;
-            color: rgba(255,255,255,0.65);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
-        /* ─── SECTION WRAPPER ─────────────────────────────────────────── */
-        .section {
-            padding: 6rem 2rem;
-        }
-
-        .section-inner {
+        /* ── SHARED ───────────────────────────────────────────────────── */
+        .wrap {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .section-label {
-            font-size: 0.75rem;
+        .section { padding: 5rem 0; }
+
+        .section-tag {
+            font-size: 0.7rem;
             font-weight: 700;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--blue-600);
+            color: var(--sky);
             margin-bottom: 0.75rem;
         }
 
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+        h2 {
+            font-size: clamp(1.75rem, 3.5vw, 2.6rem);
             font-weight: 800;
             letter-spacing: -1.5px;
             line-height: 1.1;
-            color: var(--gray-900);
-            margin-bottom: 1rem;
+            color: var(--ink);
         }
 
-        .section-sub {
-            font-size: 1.1rem;
-            color: var(--gray-600);
-            max-width: 540px;
-            line-height: 1.7;
+        .lead {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.75;
+            max-width: 520px;
+            margin-top: 0.75rem;
         }
 
-        .section-header {
-            margin-bottom: 3.5rem;
-        }
+        .section-head { margin-bottom: 3rem; }
 
-        /* ─── ABOUT ───────────────────────────────────────────────────── */
-        #about {
-            background: var(--gray-50);
-        }
+        /* ── ABOUT ────────────────────────────────────────────────────── */
+        #about { background: var(--white); }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 6rem;
             align-items: center;
         }
 
-        .about-visual {
-            position: relative;
-            height: 420px;
-        }
+        .about-copy h2 { margin-bottom: 1.25rem; }
 
-        .about-img-main {
-            width: 85%;
-            height: 340px;
-            object-fit: cover;
-            border-radius: 16px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            box-shadow: 0 24px 64px rgba(0,48,135,0.18);
-        }
-
-        .about-img-accent {
-            width: 55%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 12px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            box-shadow: 0 16px 48px rgba(0,48,135,0.22);
-            border: 4px solid var(--white);
-        }
-
-        .about-values {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 2.5rem;
-        }
-
-        .value-chip {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0.75rem 1rem;
-            background: var(--white);
-            border-radius: 10px;
-            border: 1px solid var(--gray-200);
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--gray-800);
-        }
-
-        .value-chip .icon {
-            width: 32px;
-            height: 32px;
-            background: var(--blue-100);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .about-copy p {
             font-size: 1rem;
-            flex-shrink: 0;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        /* ─── FLEET ───────────────────────────────────────────────────── */
-        #fleet {
-            background: var(--white);
+        .about-copy p:last-of-type { margin-bottom: 1.75rem; }
+
+        .about-img {
+            position: relative;
         }
+
+        .about-img img {
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .about-img-tag {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background: var(--blue);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── FLEET ────────────────────────────────────────────────────── */
+        #fleet { background: var(--off-white); }
 
         .fleet-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
         }
 
         .fleet-card {
-            border: 1.5px solid var(--gray-200);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
             background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
         }
 
         .fleet-card:hover {
-            border-color: var(--blue-400);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0,155,222,0.15);
+            box-shadow: 0 8px 32px rgba(0,48,135,0.1);
         }
 
-        .fleet-img {
+        .fleet-photo {
+            height: 160px;
+            overflow: hidden;
+        }
+
+        .fleet-photo img {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            background: linear-gradient(135deg, var(--blue-800), var(--blue-500));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            transition: transform 0.4s ease;
         }
 
-        .fleet-body {
-            padding: 1.5rem;
+        .fleet-card:hover .fleet-photo img {
+            transform: scale(1.04);
         }
 
-        .fleet-tag {
-            display: inline-block;
-            background: var(--blue-100);
-            color: var(--blue-800);
-            font-size: 0.7rem;
+        .fleet-body { padding: 1.5rem; }
+
+        .fleet-type {
+            font-size: 0.68rem;
             font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.25rem 0.625rem;
-            border-radius: 4px;
-            margin-bottom: 0.75rem;
+            color: var(--sky);
+            margin-bottom: 0.4rem;
         }
 
         .fleet-name {
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--gray-900);
-            margin-bottom: 0.35rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
         }
 
         .fleet-desc {
             font-size: 0.875rem;
-            color: var(--gray-600);
-            line-height: 1.6;
+            color: var(--gray);
+            line-height: 1.65;
             margin-bottom: 1.25rem;
         }
 
-        .fleet-specs {
+        .fleet-meta {
             display: flex;
-            gap: 1rem;
+            gap: 1.25rem;
             padding-top: 1rem;
-            border-top: 1px solid var(--gray-100);
+            border-top: 1px solid var(--border);
         }
 
-        .fleet-spec {
-            flex: 1;
-            text-align: center;
-        }
+        .fleet-meta-item {}
+        .fleet-meta-val { font-size: 0.95rem; font-weight: 700; color: var(--blue); }
+        .fleet-meta-key { font-size: 0.68rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .fleet-spec-val {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--blue-700);
-        }
+        /* ── ROUTES ───────────────────────────────────────────────────── */
+        #routes { background: var(--blue); }
+        #routes h2 { color: var(--white); }
+        #routes .section-tag { color: #7ec8f0; }
+        #routes .lead { color: rgba(255,255,255,0.6); }
 
-        .fleet-spec-label {
-            font-size: 0.7rem;
-            color: var(--gray-400);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ─── ROUTES ──────────────────────────────────────────────────── */
-        #routes {
-            background: var(--blue-900);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        #routes::before {
-            content: '';
-            position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0,155,222,0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        #routes .section-title { color: var(--white); }
-        #routes .section-label { color: var(--blue-300); }
-        #routes .section-sub   { color: rgba(255,255,255,0.65); }
-
-        .hubs-grid {
+        .hubs {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .hub-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 14px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .hub-card:hover {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
             background: rgba(255,255,255,0.1);
-            border-color: rgba(91,203,245,0.4);
-            transform: translateY(-3px);
-        }
-
-        .hub-icao {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: var(--blue-300);
-            margin-bottom: 0.25rem;
-        }
-
-        .hub-name {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 0.25rem;
-        }
-
-        .hub-city {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .hub-type {
-            margin-top: 1rem;
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            background: rgba(91,203,245,0.15);
-            color: var(--blue-300);
-        }
-
-        .routes-map-note {
-            background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 14px;
-            padding: 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* ─── RANKS — CREDIT CARDS ────────────────────────────────────── */
-        #ranks {
-            background: var(--gray-50);
-        }
-
-        .ranks-intro {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: start;
-            margin-bottom: 4rem;
-        }
-
-        .rank-cards-scroll {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.75rem;
-        }
-
-        /* Credit Card Design */
-        .rank-card {
-            width: 100%;
-            aspect-ratio: 1.586 / 1;
-            border-radius: 18px;
-            padding: 1.75rem;
-            position: relative;
-            overflow: hidden;
-            cursor: default;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .rank-card:hover {
-            transform: translateY(-6px) rotateX(2deg);
-            box-shadow: 0 32px 64px rgba(0,0,0,0.3);
-        }
-
-        /* Card tiers */
-        .rank-card.trainee {
-            background: linear-gradient(135deg, #1a2f6b 0%, #003087 50%, #0046a8 100%);
-            box-shadow: 0 16px 48px rgba(0,48,135,0.35);
-        }
-
-        .rank-card.second-officer {
-            background: linear-gradient(135deg, #003087 0%, #005ab5 40%, #009BDE 100%);
-            box-shadow: 0 16px 48px rgba(0,90,181,0.4);
-        }
-
-        .rank-card.first-officer {
-            background: linear-gradient(135deg, #005ab5 0%, #009BDE 60%, #00B2E3 100%);
-            box-shadow: 0 16px 48px rgba(0,155,222,0.45);
-        }
-
-        .rank-card.captain {
-            background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 50%, #00b2a9 100%);
-            box-shadow: 0 20px 56px rgba(0,178,169,0.4);
-        }
-
-        .rank-card.senior-captain {
-            background: linear-gradient(135deg, #1a0533 0%, #3b1278 50%, #7b2ff7 100%);
-            box-shadow: 0 20px 56px rgba(123,47,247,0.45);
-        }
-
-        .rank-card.chief-pilot {
-            background: linear-gradient(135deg, #1a0a00 0%, #4a2000 40%, #c47d0e 80%, #f5c842 100%);
-            box-shadow: 0 24px 64px rgba(196,125,14,0.5);
-        }
-
-        /* Glossy shimmer overlay */
-        .rank-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                115deg,
-                transparent 40%,
-                rgba(255,255,255,0.06) 48%,
-                rgba(255,255,255,0.14) 50%,
-                rgba(255,255,255,0.06) 52%,
-                transparent 60%
-            );
-            transform: rotate(0deg);
-            pointer-events: none;
-            transition: transform 0.6s ease;
-        }
-
-        .rank-card:hover::before {
-            transform: translateX(30%) rotate(0deg);
-        }
-
-        /* Decorative circles */
-        .rank-card::after {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            right: -60px;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.06);
-            pointer-events: none;
-        }
-
-        .card-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card-logo-mark {
-            width: 32px;
-            height: 32px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-        }
-
-        .card-logo-text {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.75);
-            text-transform: uppercase;
-        }
-
-        .card-chip {
-            width: 42px;
-            height: 32px;
-            background: linear-gradient(135deg, #c8a84b, #f0d060, #c8a84b);
-            border-radius: 6px;
-            position: relative;
+            border-radius: 8px;
             overflow: hidden;
         }
 
-        .card-chip::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: rgba(0,0,0,0.2);
-            transform: translateY(-50%);
+        .hub {
+            background: rgba(0,48,135,0.5);
+            padding: 2rem 1.5rem;
+            transition: background 0.2s;
         }
 
-        .card-chip::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 1px;
-            background: rgba(0,0,0,0.2);
-            transform: translateX(-50%);
-        }
+        .hub:hover { background: rgba(255,255,255,0.07); }
 
-        .card-mid {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .card-hours {
-            color: rgba(255,255,255,0.55);
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .card-hours-val {
-            color: var(--white);
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .card-rank-name {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: var(--white);
-            letter-spacing: -0.5px;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .card-aircraft {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.6);
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        .card-aircraft strong {
-            display: block;
-            color: rgba(255,255,255,0.9);
-            font-weight: 700;
-        }
-
-        .card-tier-badge {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.25);
-            color: var(--white);
-            font-size: 0.65rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-        }
-
-        /* Rank benefit list */
-        .rank-detail {
-            background: var(--white);
-            border: 1.5px solid var(--gray-200);
-            border-radius: 14px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .rank-detail h4 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.75rem;
-        }
-
-        .rank-perks {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.45rem;
-        }
-
-        .rank-perks li {
-            font-size: 0.82rem;
-            color: var(--gray-600);
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .rank-perks li::before {
-            content: '✓';
-            color: var(--blue-500);
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        /* ─── STAFF ───────────────────────────────────────────────────── */
-        #staff {
-            background: var(--white);
-        }
-
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .staff-card {
-            border: 1.5px solid var(--gray-200);
-            border-radius: 16px;
-            padding: 1.75rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .staff-card:hover {
-            border-color: var(--blue-400);
-            box-shadow: 0 16px 48px rgba(0,155,222,0.12);
-            transform: translateY(-3px);
-        }
-
-        .staff-avatar {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .hub-code {
             font-size: 1.75rem;
             font-weight: 900;
             color: var(--white);
+            letter-spacing: -1px;
+            line-height: 1;
         }
 
-        .staff-role {
-            font-size: 0.7rem;
+        .hub-airport {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            margin: 0.35rem 0 0.2rem;
+            line-height: 1.3;
+        }
+
+        .hub-city {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .hub-pill {
+            margin-top: 1rem;
+            display: inline-block;
+            font-size: 0.62rem;
             font-weight: 700;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--blue-600);
-            margin-bottom: 0.5rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 3px;
+            background: rgba(0,155,222,0.2);
+            color: #7ec8f0;
         }
 
-        .staff-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            letter-spacing: -0.3px;
-            margin-bottom: 0.25rem;
-        }
-
-        .staff-ifc {
+        .routes-note {
+            margin-top: 1.5rem;
             font-size: 0.85rem;
-            color: var(--gray-400);
+            color: rgba(255,255,255,0.4);
         }
 
-        /* ─── APPLY ───────────────────────────────────────────────────── */
-        #apply {
-            background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-800) 100%);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
+        /* ── RANKS ────────────────────────────────────────────────────── */
+        #ranks { background: var(--off-white); }
 
-        #apply::before {
-            content: '';
-            position: absolute;
-            top: -300px;
-            left: -200px;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(0,155,222,0.18) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        #apply .section-title { color: var(--white); }
-        #apply .section-label { color: var(--blue-300); }
-
-        .apply-grid {
+        .ranks-intro {
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 5rem;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
             align-items: start;
         }
 
-        .apply-info h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
+        .ranks-copy { position: sticky; top: 100px; }
+        .ranks-copy h2 { margin-bottom: 1rem; }
+        .ranks-copy .lead { margin-bottom: 1.5rem; }
 
-        .apply-info p {
-            color: rgba(255,255,255,0.65);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .req-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .req-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: rgba(255,255,255,0.75);
-            font-size: 0.9rem;
-        }
-
-        .req-list li .req-icon {
-            width: 24px;
-            height: 24px;
-            background: rgba(91,203,245,0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            color: var(--blue-300);
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .apply-form {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 2.5rem;
-        }
-
-        .apply-form h3 {
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: var(--gray-900);
-            letter-spacing: -0.5px;
-            margin-bottom: 1.75rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--gray-600);
-            text-transform: uppercase;
-            letter-spacing: 0.75px;
-            margin-bottom: 0.4rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: var(--gray-50);
-            border: 1.5px solid var(--gray-200);
-            color: var(--gray-900);
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-family: inherit;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--blue-500);
-            background: var(--white);
-        }
-
-        .form-group textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            background: var(--blue-800);
-            color: var(--white);
-            padding: 0.9rem 2rem;
-            border: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.2s;
-            letter-spacing: -0.3px;
-        }
-
-        .form-submit:hover {
-            background: var(--blue-700);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0,48,135,0.35);
-        }
-
-        /* ─── FOOTER ──────────────────────────────────────────────────── */
-        footer {
-            background: var(--gray-900);
-            color: rgba(255,255,255,0.5);
-            padding: 3rem 2rem;
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand .nav-logo-text {
-            font-size: 1.4rem;
-            color: var(--white);
-        }
-
-        .footer-brand p {
-            font-size: 0.82rem;
-            line-height: 1.7;
-            margin-top: 1rem;
-            max-width: 240px;
-        }
-
-        .footer-col h4 {
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 1rem;
-        }
-
-        .footer-col ul {
+        .ranks-copy ul {
             list-style: none;
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
         }
 
-        .footer-col a {
+        .ranks-copy li {
             font-size: 0.875rem;
-            color: rgba(255,255,255,0.45);
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ranks-copy li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--sky);
+            flex-shrink: 0;
+        }
+
+        .cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* Credit Card */
+        .rank-card {
+            width: 100%;
+            aspect-ratio: 1.586;
+            border-radius: 14px;
+            padding: 1.6rem 1.75rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rank-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Card gradients — restrained, real */
+        .card-t1 { background: linear-gradient(130deg, #001a4d 0%, #003087 100%); box-shadow: 0 12px 40px rgba(0,30,80,0.35); }
+        .card-t2 { background: linear-gradient(130deg, #003087 0%, #0057b8 100%); box-shadow: 0 12px 40px rgba(0,48,135,0.4); }
+        .card-t3 { background: linear-gradient(130deg, #0057b8 0%, #009BDE 100%); box-shadow: 0 12px 40px rgba(0,87,184,0.4); }
+        .card-t4 { background: linear-gradient(130deg, #0d3b3b 0%, #007b75 100%); box-shadow: 0 12px 40px rgba(0,100,100,0.4); }
+        .card-t5 { background: linear-gradient(130deg, #1e0a3c 0%, #5c1fb3 100%); box-shadow: 0 12px 40px rgba(80,20,160,0.45); }
+        .card-t6 { background: linear-gradient(130deg, #2a1500 0%, #9a5800 60%, #c8900a 100%); box-shadow: 0 14px 48px rgba(150,80,0,0.45); }
+
+        /* Subtle noise texture overlay */
+        .rank-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 200px;
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .card-brand {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .card-tier-num {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+        }
+
+        .card-chip {
+            width: 40px;
+            height: 30px;
+            border-radius: 5px;
+            background: linear-gradient(135deg, #c09020, #f0d060 40%, #c09020 70%, #f0d060);
+            position: relative;
+        }
+
+        .card-chip::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 5px;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 5px,
+                rgba(0,0,0,0.12) 5px,
+                rgba(0,0,0,0.12) 6px
+            );
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .card-rank { font-size: 1.25rem; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+        .card-sub  { font-size: 0.72rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+        .card-hrs  { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-align: right; }
+        .card-hrs strong { display: block; font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.85); }
+
+        /* ── STAFF ────────────────────────────────────────────────────── */
+        #staff { background: var(--white); }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .staff-item {
+            padding: 2rem;
+            background: var(--white);
+            transition: background 0.15s;
+        }
+
+        .staff-item:hover { background: var(--off-white); }
+
+        .staff-initials {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.25rem;
+        }
+
+        .staff-role {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--sky);
+            margin-bottom: 0.3rem;
+        }
+
+        .staff-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
+        }
+
+        .staff-ifc {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ── APPLY ────────────────────────────────────────────────────── */
+        #apply { background: var(--off-white); }
+
+        .apply-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .apply-left h2 { margin-bottom: 1rem; }
+
+        .reqs {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .req {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .req-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--sky);
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .req p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .apply-form {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2.5rem;
+        }
+
+        .apply-form h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            margin-bottom: 1.75rem;
+            color: var(--ink);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .fg { margin-bottom: 1.1rem; }
+
+        .fg label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+            color: var(--gray);
+            margin-bottom: 0.35rem;
+        }
+
+        .fg input, .fg select, .fg textarea {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1.5px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            color: var(--ink);
+            background: var(--white);
+            transition: border-color 0.15s;
+            -webkit-appearance: none;
+        }
+
+        .fg input:focus, .fg select:focus, .fg textarea:focus {
+            outline: none;
+            border-color: var(--blue);
+        }
+
+        .fg textarea { min-height: 90px; resize: vertical; }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            padding: 0.85rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-family: inherit;
+        }
+
+        .submit-btn:hover { background: var(--blue-mid); }
+
+        /* ── FOOTER ───────────────────────────────────────────────────── */
+        footer {
+            background: var(--ink);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand .logo { font-size: 1rem; }
+
+        .footer-brand p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.35);
+            margin-top: 0.6rem;
+            max-width: 260px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+
+        .footer-col a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.15s;
         }
 
         .footer-col a:hover { color: var(--white); }
 
         .footer-bottom {
-            max-width: 1200px;
-            margin: 2rem auto 0;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            font-size: 0.78rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.25);
             display: flex;
             justify-content: space-between;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
-        .footer-bottom a {
-            color: rgba(255,255,255,0.35);
-            text-decoration: none;
-        }
-
-        .footer-bottom a:hover { color: var(--white); }
-
-        /* ─── SCROLL REVEAL ───────────────────────────────────────────── */
-        .reveal {
+        /* ── FADE IN ──────────────────────────────────────────────────── */
+        .fade {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            transform: translateY(16px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+        .fade.in { opacity: 1; transform: none; }
+        .fade-d1 { transition-delay: 0.08s; }
+        .fade-d2 { transition-delay: 0.16s; }
+        .fade-d3 { transition-delay: 0.24s; }
+        .fade-d4 { transition-delay: 0.32s; }
+        .fade-d5 { transition-delay: 0.40s; }
+
+        /* ── RESPONSIVE ───────────────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .fleet-grid { grid-template-columns: repeat(3, 1fr); }
+            .hubs       { grid-template-columns: repeat(3, 1fr); }
+            .ranks-intro { grid-template-columns: 1fr; }
+            .ranks-copy { position: static; }
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @media (max-width: 768px) {
+            .hero               { grid-template-columns: 1fr; }
+            .hero-right         { display: none; }
+            .hero-left          { padding: 3rem 1.5rem; }
+            .about-grid         { grid-template-columns: 1fr; }
+            .fleet-grid         { grid-template-columns: 1fr; }
+            .hubs               { grid-template-columns: 1fr 1fr; }
+            .staff-grid         { grid-template-columns: 1fr; }
+            .apply-layout       { grid-template-columns: 1fr; gap: 2rem; }
+            .form-row           { grid-template-columns: 1fr; }
+            .nav-links          { display: none; }
+            .footer-top         { flex-direction: column; }
+            .footer-links       { flex-direction: column; gap: 1.5rem; }
+            .footer-bottom      { flex-direction: column; gap: 0.5rem; }
         }
 
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
-
-        /* ─── MOBILE ──────────────────────────────────────────────────── */
-        @media (max-width: 900px) {
-            .about-grid,
-            .apply-grid,
-            .ranks-intro { grid-template-columns: 1fr; gap: 2.5rem; }
-            .about-visual { height: 280px; }
-            .footer-inner { grid-template-columns: 1fr 1fr; }
-            .form-row { grid-template-columns: 1fr; }
-            .hero-stats { gap: 2rem; bottom: 130px; }
-        }
-
-        @media (max-width: 600px) {
-            .nav-links { display: none; }
-            .footer-inner { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero-stats { gap: 1.5rem; }
-            .rank-cards-scroll { grid-template-columns: 1fr; }
+        @media (max-width: 520px) {
+            .hubs { grid-template-columns: 1fr; }
+            .ticker-inner { flex-wrap: wrap; }
+            .ticker-item { flex: 0 0 50%; border-bottom: 1px solid var(--border); }
         }
     </style>
 </head>
 <body>
 
-<!-- ─── NAVIGATION ──────────────────────────────────────────────────────── -->
+<!-- NAV -->
 <nav>
-    <div class="nav-inner">
-        <a href="#" class="nav-logo">
-            <div class="nav-logo-icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-                </svg>
-            </div>
-            <span class="nav-logo-text">Virtual <span>Blue</span></span>
-        </a>
+    <div class="nav-wrap">
+        <a href="#" class="logo">Virtual <span>Blue</span></a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#fleet">Fleet</a></li>
             <li><a href="#routes">Routes</a></li>
             <li><a href="#ranks">Ranks</a></li>
             <li><a href="#staff">Staff</a></li>
-            <li><a href="#apply" class="nav-cta">Join Now</a></li>
+            <li><a href="#apply" class="nav-join">Join Now</a></li>
         </ul>
     </div>
 </nav>
 
-<!-- ─── HERO ──────────────────────────────────────────────────────────────── -->
-<header class="hero">
-    <div class="hero-badge">
-        <span class="dot"></span>
-        Now Recruiting · Infinite Flight
-    </div>
-    <h1>Fly Beyond the<br><em>Horizon</em></h1>
-    <p>Virtual Blue is the premier JetBlue-inspired virtual airline on Infinite Flight, committed to realistic operations, professional standards, and an unmatched crew experience.</p>
-    <div class="hero-actions">
-        <a href="#apply" class="btn-primary">Apply Now</a>
-        <a href="#about" class="btn-ghost">Learn More</a>
-    </div>
-    <div class="hero-stats">
-        <div class="stat">
-            <div class="stat-number">120+</div>
-            <div class="stat-label">Active Pilots</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">85</div>
-            <div class="stat-label">Routes</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">5</div>
-            <div class="stat-label">Hub Cities</div>
-        </div>
-        <div class="stat">
-            <div class="stat-number">6</div>
-            <div class="stat-label">Rank Tiers</div>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-left">
+        <p class="hero-eyebrow">Infinite Flight Virtual Airline</p>
+        <h1>Where every flight matters.</h1>
+        <p>Virtual Blue brings the spirit of JetBlue to Infinite Flight — real routes, real standards, and a crew that genuinely loves to fly.</p>
+        <div class="hero-btns">
+            <a href="#apply" class="btn btn-white">Join the Crew</a>
+            <a href="#about" class="btn btn-outline">Learn More</a>
         </div>
     </div>
-</header>
+    <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=1200&q=80" alt="Aircraft in flight">
+    </div>
+</section>
 
-<!-- ─── ABOUT ─────────────────────────────────────────────────────────────── -->
+<!-- TICKER -->
+<div class="ticker">
+    <div class="ticker-inner">
+        <div class="ticker-item">
+            <div class="ticker-num">120+</div>
+            <div class="ticker-label">Active Pilots</div>
+        </div>
+        <div class="ticker-item">
+            <div class="ticker-num">85</div>
+            <div class="ticker-label">Routes</div>
+        </div>
+        <div class="ticker-item">
+            <div class="ticker-num">5</div>
+            <div class="ticker-label">Hub Cities</div>
+        </div>
+        <div class="ticker-item">
+            <div class="ticker-num">6</div>
+            <div class="ticker-label">Rank Tiers</div>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
 <section class="section" id="about">
-    <div class="section-inner">
+    <div class="wrap">
         <div class="about-grid">
-            <div>
-                <p class="section-label reveal">Who We Are</p>
-                <h2 class="section-title reveal reveal-delay-1">A Different Kind of<br>Virtual Airline</h2>
-                <p class="section-sub reveal reveal-delay-2">Virtual Blue was founded to bring the spirit of JetBlue to Infinite Flight — where humanity, fun, and a genuine passion for aviation come together. We believe every flight should feel meaningful.</p>
-                <div class="about-values reveal reveal-delay-3">
-                    <div class="value-chip"><div class="icon">✈️</div>Realistic Ops</div>
-                    <div class="value-chip"><div class="icon">🏆</div>Rank Progression</div>
-                    <div class="value-chip"><div class="icon">🌐</div>Global Routes</div>
-                    <div class="value-chip"><div class="icon">🤝</div>Community First</div>
-                    <div class="value-chip"><div class="icon">📡</div>ATC Compliance</div>
-                    <div class="value-chip"><div class="icon">🛫</div>Premium Liveries</div>
-                </div>
+            <div class="about-copy">
+                <p class="section-tag fade">About Virtual Blue</p>
+                <h2 class="fade fade-d1">A virtual airline built different.</h2>
+                <p class="fade fade-d2">We didn't start Virtual Blue to be another template VA. We started it because we wanted something that felt real — routes that make sense, standards that matter, and a crew that shows up.</p>
+                <p class="fade fade-d2">Modeled after JetBlue, we operate out of the same hubs, fly the same fleet, and hold our pilots to the same professional culture. If you want to just log hours, we're probably not for you. If you want to actually build something, welcome aboard.</p>
+                <a href="#apply" class="btn btn-white fade fade-d3" style="background:var(--blue);color:var(--white);">Apply Now</a>
             </div>
-            <div class="about-visual reveal reveal-delay-2">
-                <img class="about-img-main"
-                    src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&q=80"
-                    alt="JetBlue-inspired aircraft in flight">
-                <img class="about-img-accent"
-                    src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=600&q=80"
-                    alt="Cockpit view">
+            <div class="about-img fade fade-d2">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=80" alt="Looking out aircraft window">
+                <div class="about-img-tag">Est. 2026 · Infinite Flight</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ─── FLEET ─────────────────────────────────────────────────────────────── -->
+<!-- FLEET -->
 <section class="section" id="fleet">
-    <div class="section-inner">
-        <div class="section-header">
-            <p class="section-label reveal">The Fleet</p>
-            <h2 class="section-title reveal reveal-delay-1">Aircraft We Fly</h2>
-            <p class="section-sub reveal reveal-delay-2">Our fleet mirrors the real JetBlue lineup — available within Infinite Flight — covering everything from regional hops to transcontinental Mint service.</p>
+    <div class="wrap">
+        <div class="section-head">
+            <p class="section-tag fade">The Fleet</p>
+            <h2 class="fade fade-d1">Three aircraft. One standard.</h2>
+            <p class="lead fade fade-d2">Our fleet mirrors JetBlue's real operation — every aircraft available within Infinite Flight, from regional hops to transcontinental Mint service.</p>
         </div>
         <div class="fleet-grid">
-            <div class="fleet-card reveal reveal-delay-1">
-                <div class="fleet-img" style="background:linear-gradient(135deg,#001f5b,#003087);">✈️</div>
+            <div class="fleet-card fade fade-d1">
+                <div class="fleet-photo">
+                    <img src="https://images.unsplash.com/photo-1583769763673-c0dae46f2ab5?w=700&q=80" alt="Aircraft exterior">
+                </div>
                 <div class="fleet-body">
-                    <span class="fleet-tag">Narrowbody</span>
-                    <div class="fleet-name">Airbus A220-300</div>
-                    <div class="fleet-desc">JetBlue's newest addition. Ultra-efficient, whisper-quiet, and perfect for domestic routes with a best-in-class cabin experience.</div>
-                    <div class="fleet-specs">
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">140</div>
-                            <div class="fleet-spec-label">Seats</div>
+                    <p class="fleet-type">Narrowbody</p>
+                    <p class="fleet-name">Airbus A220-300</p>
+                    <p class="fleet-desc">JetBlue's newest aircraft. Quiet, efficient, and purpose-built for the routes where comfort matters most.</p>
+                    <div class="fleet-meta">
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">140</div>
+                            <div class="fleet-meta-key">Seats</div>
                         </div>
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">3,400nm</div>
-                            <div class="fleet-spec-label">Range</div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">3,400 nm</div>
+                            <div class="fleet-meta-key">Range</div>
                         </div>
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">Short–Med</div>
-                            <div class="fleet-spec-label">Haul</div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">Short–Med</div>
+                            <div class="fleet-meta-key">Haul</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="fleet-card reveal reveal-delay-2">
-                <div class="fleet-img" style="background:linear-gradient(135deg,#003087,#005ab5);">✈️</div>
+            <div class="fleet-card fade fade-d2">
+                <div class="fleet-photo">
+                    <img src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=700&q=80" alt="Aircraft cockpit">
+                </div>
                 <div class="fleet-body">
-                    <span class="fleet-tag">Narrowbody</span>
-                    <div class="fleet-name">Airbus A320-200</div>
-                    <div class="fleet-desc">The workhorse of Virtual Blue. Handling the majority of mainline domestic operations across the eastern seaboard and beyond.</div>
-                    <div class="fleet-specs">
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">162</div>
-                            <div class="fleet-spec-label">Seats</div>
+                    <p class="fleet-type">Narrowbody</p>
+                    <p class="fleet-name">Airbus A320-200</p>
+                    <p class="fleet-desc">The backbone of our operation. Handles the bulk of domestic mainline routes across the U.S. east coast and Caribbean.</p>
+                    <div class="fleet-meta">
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">162</div>
+                            <div class="fleet-meta-key">Seats</div>
                         </div>
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">3,300nm</div>
-                            <div class="fleet-spec-label">Range</div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">3,300 nm</div>
+                            <div class="fleet-meta-key">Range</div>
                         </div>
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">Short–Med</div>
-                            <div class="fleet-spec-label">Haul</div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">Short–Med</div>
+                            <div class="fleet-meta-key">Haul</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="fleet-card reveal reveal-delay-3">
-                <div class="fleet-img" style="background:linear-gradient(135deg,#005ab5,#009BDE);">✈️</div>
+            <div class="fleet-card fade fade-d3">
+                <div class="fleet-photo">
+                    <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?w=700&q=80" alt="Aircraft wing in sunset">
+                </div>
                 <div class="fleet-body">
-                    <span class="fleet-tag">Narrowbody</span>
-                    <div class="fleet-name">Airbus A321neo</div>
-                    <div class="fleet-desc">Flagship of our Mint transcon service — New York to Los Angeles with an elevated experience. Also serves Caribbean and Latin American routes.</div>
-                    <div class="fleet-specs">
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">200</div>
-                            <div class="fleet-spec-label">Seats</div>
+                    <p class="fleet-type">Narrowbody</p>
+                    <p class="fleet-name">Airbus A321neo</p>
+                    <p class="fleet-desc">Flagship of our Mint transcon service. New York to LA, Boston to London — this is our long-range workhorse.</p>
+                    <div class="fleet-meta">
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">200</div>
+                            <div class="fleet-meta-key">Seats</div>
                         </div>
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">4,000nm</div>
-                            <div class="fleet-spec-label">Range</div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">4,000 nm</div>
+                            <div class="fleet-meta-key">Range</div>
                         </div>
-                        <div class="fleet-spec">
-                            <div class="fleet-spec-val">Med–Long</div>
-                            <div class="fleet-spec-label">Haul</div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">Med–Long</div>
+                            <div class="fleet-meta-key">Haul</div>
                         </div>
                     </div>
                 </div>
@@ -1319,366 +1002,279 @@
     </div>
 </section>
 
-<!-- ─── ROUTES ────────────────────────────────────────────────────────────── -->
+<!-- ROUTES -->
 <section class="section" id="routes">
-    <div class="section-inner">
-        <div class="section-header">
-            <p class="section-label reveal">Network</p>
-            <h2 class="section-title reveal reveal-delay-1">Hubs & Routes</h2>
-            <p class="section-sub reveal reveal-delay-2">Mirroring JetBlue's real-world network, our virtual operations span the U.S., Caribbean, Latin America, and transatlantic routes.</p>
+    <div class="wrap">
+        <div class="section-head">
+            <p class="section-tag fade">Network</p>
+            <h2 class="fade fade-d1">Five hubs. 85+ routes.</h2>
+            <p class="lead fade fade-d2" style="color:rgba(255,255,255,0.55)">We fly where JetBlue flies — from the northeast corridor to the Caribbean, across the continent, and beyond.</p>
         </div>
-        <div class="hubs-grid">
-            <div class="hub-card reveal reveal-delay-1">
-                <div class="hub-icao">KJFK</div>
-                <div class="hub-name">John F. Kennedy International</div>
-                <div class="hub-city">New York, New York</div>
-                <span class="hub-type">Primary Hub</span>
+        <div class="hubs fade fade-d2">
+            <div class="hub">
+                <div class="hub-code">KJFK</div>
+                <div class="hub-airport">John F. Kennedy Intl</div>
+                <div class="hub-city">New York, NY</div>
+                <span class="hub-pill">Primary Hub</span>
             </div>
-            <div class="hub-card reveal reveal-delay-2">
-                <div class="hub-icao">KBOS</div>
-                <div class="hub-name">Logan International</div>
-                <div class="hub-city">Boston, Massachusetts</div>
-                <span class="hub-type">Focus City</span>
+            <div class="hub">
+                <div class="hub-code">KBOS</div>
+                <div class="hub-airport">Logan International</div>
+                <div class="hub-city">Boston, MA</div>
+                <span class="hub-pill">Focus City</span>
             </div>
-            <div class="hub-card reveal reveal-delay-3">
-                <div class="hub-icao">KFLL</div>
-                <div class="hub-name">Fort Lauderdale–Hollywood</div>
-                <div class="hub-city">Fort Lauderdale, Florida</div>
-                <span class="hub-type">Focus City</span>
+            <div class="hub">
+                <div class="hub-code">KFLL</div>
+                <div class="hub-airport">Fort Lauderdale–Hollywood</div>
+                <div class="hub-city">Fort Lauderdale, FL</div>
+                <span class="hub-pill">Focus City</span>
             </div>
-            <div class="hub-card reveal reveal-delay-4">
-                <div class="hub-icao">KLAX</div>
-                <div class="hub-name">Los Angeles International</div>
-                <div class="hub-city">Los Angeles, California</div>
-                <span class="hub-type">Focus City</span>
+            <div class="hub">
+                <div class="hub-code">KLAX</div>
+                <div class="hub-airport">Los Angeles Intl</div>
+                <div class="hub-city">Los Angeles, CA</div>
+                <span class="hub-pill">Focus City</span>
             </div>
-            <div class="hub-card reveal reveal-delay-5">
-                <div class="hub-icao">KMCO</div>
-                <div class="hub-name">Orlando International</div>
-                <div class="hub-city">Orlando, Florida</div>
-                <span class="hub-type">Focus City</span>
+            <div class="hub">
+                <div class="hub-code">KMCO</div>
+                <div class="hub-airport">Orlando International</div>
+                <div class="hub-city">Orlando, FL</div>
+                <span class="hub-pill">Focus City</span>
             </div>
         </div>
-        <div class="routes-map-note reveal">
-            ✈️ &nbsp; Full route map available to registered crew members in the pilot portal. We operate 85+ routes across North America, the Caribbean, and Europe.
-        </div>
+        <p class="routes-note fade">Full route map available to registered crew members in the pilot portal.</p>
     </div>
 </section>
 
-<!-- ─── RANKS ─────────────────────────────────────────────────────────────── -->
+<!-- RANKS -->
 <section class="section" id="ranks">
-    <div class="section-inner">
-        <div class="section-header">
-            <p class="section-label reveal">Pilot Program</p>
-            <h2 class="section-title reveal reveal-delay-1">Rank & Tier Structure</h2>
-            <p class="section-sub reveal reveal-delay-2">Progress through six distinct ranks — each represented by a unique crew card — unlocking new aircraft, routes, and privileges along the way.</p>
-        </div>
-
-        <div class="rank-cards-scroll">
-
-            <!-- Trainee -->
-            <div class="reveal reveal-delay-1">
-                <div class="rank-card trainee">
-                    <div class="card-logo">
-                        <div class="card-logo-mark">✈</div>
-                        <div class="card-logo-text">Virtual Blue</div>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-chip"></div>
-                        <div>
-                            <div class="card-hours">Hours Required</div>
-                            <div class="card-hours-val">0 hrs</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <div class="card-rank-name">Trainee Pilot</div>
-                            <div class="card-aircraft"><strong>A220-300</strong>Regional Fleet</div>
-                        </div>
-                        <div class="card-tier-badge">Tier 1</div>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <h4>Privileges</h4>
-                    <ul class="rank-perks">
-                        <li>Welcome to Virtual Blue community</li>
-                        <li>Access to domestic regional routes</li>
-                        <li>A220-300 type rating</li>
-                        <li>Monthly training flights</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Second Officer -->
-            <div class="reveal reveal-delay-2">
-                <div class="rank-card second-officer">
-                    <div class="card-logo">
-                        <div class="card-logo-mark">✈</div>
-                        <div class="card-logo-text">Virtual Blue</div>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-chip"></div>
-                        <div>
-                            <div class="card-hours">Hours Required</div>
-                            <div class="card-hours-val">25 hrs</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <div class="card-rank-name">Second Officer</div>
-                            <div class="card-aircraft"><strong>A320-200</strong>Mainline Fleet</div>
-                        </div>
-                        <div class="card-tier-badge">Tier 2</div>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <h4>Privileges</h4>
-                    <ul class="rank-perks">
-                        <li>A320-200 type rating unlocked</li>
-                        <li>Access to 40+ domestic routes</li>
-                        <li>Caribbean route eligibility</li>
-                        <li>VB crew Discord channel access</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- First Officer -->
-            <div class="reveal reveal-delay-3">
-                <div class="rank-card first-officer">
-                    <div class="card-logo">
-                        <div class="card-logo-mark">✈</div>
-                        <div class="card-logo-text">Virtual Blue</div>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-chip"></div>
-                        <div>
-                            <div class="card-hours">Hours Required</div>
-                            <div class="card-hours-val">75 hrs</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <div class="card-rank-name">First Officer</div>
-                            <div class="card-aircraft"><strong>A321neo</strong>Mint Service</div>
-                        </div>
-                        <div class="card-tier-badge">Tier 3</div>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <h4>Privileges</h4>
-                    <ul class="rank-perks">
-                        <li>A321neo Mint transcon type rating</li>
-                        <li>Ability to file international routes</li>
-                        <li>Priority route bidding access</li>
-                        <li>Mentor eligibility</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Captain -->
-            <div class="reveal reveal-delay-1">
-                <div class="rank-card captain">
-                    <div class="card-logo">
-                        <div class="card-logo-mark">✈</div>
-                        <div class="card-logo-text">Virtual Blue</div>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-chip"></div>
-                        <div>
-                            <div class="card-hours">Hours Required</div>
-                            <div class="card-hours-val">150 hrs</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <div class="card-rank-name">Captain</div>
-                            <div class="card-aircraft"><strong>Full Fleet</strong>All Routes</div>
-                        </div>
-                        <div class="card-tier-badge">Tier 4</div>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <h4>Privileges</h4>
-                    <ul class="rank-perks">
-                        <li>Unrestricted full fleet access</li>
-                        <li>Command authority on all routes</li>
-                        <li>Transatlantic route qualification</li>
-                        <li>Charter flight scheduling rights</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Senior Captain -->
-            <div class="reveal reveal-delay-2">
-                <div class="rank-card senior-captain">
-                    <div class="card-logo">
-                        <div class="card-logo-mark">✈</div>
-                        <div class="card-logo-text">Virtual Blue</div>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-chip"></div>
-                        <div>
-                            <div class="card-hours">Hours Required</div>
-                            <div class="card-hours-val">300 hrs</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <div class="card-rank-name">Senior Captain</div>
-                            <div class="card-aircraft"><strong>All Aircraft</strong>Leadership Track</div>
-                        </div>
-                        <div class="card-tier-badge">Tier 5</div>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <h4>Privileges</h4>
-                    <ul class="rank-perks">
-                        <li>Staff mentor & training authority</li>
-                        <li>Exclusive VB Senior crew livery</li>
-                        <li>Vote on VA policy decisions</li>
-                        <li>First access to new route openings</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Chief Pilot -->
-            <div class="reveal reveal-delay-3">
-                <div class="rank-card chief-pilot">
-                    <div class="card-logo">
-                        <div class="card-logo-mark">✈</div>
-                        <div class="card-logo-text">Virtual Blue</div>
-                    </div>
-                    <div class="card-mid">
-                        <div class="card-chip"></div>
-                        <div>
-                            <div class="card-hours">Hours Required</div>
-                            <div class="card-hours-val">500 hrs</div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <div class="card-rank-name">Chief Pilot</div>
-                            <div class="card-aircraft"><strong>Platinum Elite</strong>Gold Card</div>
-                        </div>
-                        <div class="card-tier-badge">Tier 6</div>
-                    </div>
-                </div>
-                <div class="rank-detail">
-                    <h4>Privileges</h4>
-                    <ul class="rank-perks">
-                        <li>Highest honor in Virtual Blue</li>
-                        <li>VA governance & operations board</li>
-                        <li>Gold card & exclusive callsign</li>
-                        <li>All permanent perks unlocked</li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ─── STAFF ─────────────────────────────────────────────────────────────── -->
-<section class="section" id="staff">
-    <div class="section-inner">
-        <div class="section-header">
-            <p class="section-label reveal">Leadership</p>
-            <h2 class="section-title reveal reveal-delay-1">Executive Team</h2>
-            <p class="section-sub reveal reveal-delay-2">Our leadership team keeps Virtual Blue flying smoothly — managing operations, training, recruitment, and community.</p>
-        </div>
-        <div class="staff-grid">
-            <div class="staff-card reveal reveal-delay-1">
-                <div class="staff-avatar" style="background:linear-gradient(135deg,#001f5b,#003087);">CEO</div>
-                <div class="staff-role">Chief Executive Officer</div>
-                <div class="staff-name">Your Name</div>
-                <div class="staff-ifc">@IFC_Username</div>
-            </div>
-            <div class="staff-card reveal reveal-delay-2">
-                <div class="staff-avatar" style="background:linear-gradient(135deg,#003087,#005ab5);">COO</div>
-                <div class="staff-role">Chief Operating Officer</div>
-                <div class="staff-name">Staff Name</div>
-                <div class="staff-ifc">@IFC_Username</div>
-            </div>
-            <div class="staff-card reveal reveal-delay-3">
-                <div class="staff-avatar" style="background:linear-gradient(135deg,#005ab5,#009BDE);">CFO</div>
-                <div class="staff-role">Chief Flight Operations</div>
-                <div class="staff-name">Staff Name</div>
-                <div class="staff-ifc">@IFC_Username</div>
-            </div>
-            <div class="staff-card reveal reveal-delay-4">
-                <div class="staff-avatar" style="background:linear-gradient(135deg,#009BDE,#00B2E3);">HR</div>
-                <div class="staff-role">Human Resources Director</div>
-                <div class="staff-name">Staff Name</div>
-                <div class="staff-ifc">@IFC_Username</div>
-            </div>
-            <div class="staff-card reveal reveal-delay-5">
-                <div class="staff-avatar" style="background:linear-gradient(135deg,#0d1b2a,#00b2a9);">TR</div>
-                <div class="staff-role">Training Director</div>
-                <div class="staff-name">Staff Name</div>
-                <div class="staff-ifc">@IFC_Username</div>
-            </div>
-            <div class="staff-card reveal reveal-delay-1">
-                <div class="staff-avatar" style="background:linear-gradient(135deg,#1a0533,#7b2ff7);">MK</div>
-                <div class="staff-role">Marketing Director</div>
-                <div class="staff-name">Staff Name</div>
-                <div class="staff-ifc">@IFC_Username</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ─── APPLY ─────────────────────────────────────────────────────────────── -->
-<section class="section" id="apply">
-    <div class="section-inner">
-        <div class="apply-grid">
-            <div class="apply-info">
-                <p class="section-label reveal">Join the Crew</p>
-                <h2 class="section-title reveal reveal-delay-1">Ready to Fly<br>with Us?</h2>
-                <p class="reveal reveal-delay-2">We're always looking for dedicated, professional pilots to join the Virtual Blue family. Whether you're brand new to Infinite Flight or a seasoned Grade 5, there's a seat for you.</p>
-                <ul class="req-list reveal reveal-delay-3">
-                    <li>
-                        <div class="req-icon">✓</div>
-                        Minimum Grade 2 on Infinite Flight (Grade 3 preferred)
-                    </li>
-                    <li>
-                        <div class="req-icon">✓</div>
-                        Active in Infinite Flight at least once per week
-                    </li>
-                    <li>
-                        <div class="req-icon">✓</div>
-                        Valid Infinite Flight Community (IFC) account
-                    </li>
-                    <li>
-                        <div class="req-icon">✓</div>
-                        Willingness to follow VA procedures and guidelines
-                    </li>
-                    <li>
-                        <div class="req-icon">✓</div>
-                        Respectful, positive community attitude
-                    </li>
+    <div class="wrap">
+        <div class="ranks-intro">
+            <div class="ranks-copy">
+                <p class="section-tag fade">Pilot Program</p>
+                <h2 class="fade fade-d1">Six ranks. One path forward.</h2>
+                <p class="lead fade fade-d2">Every pilot starts as a Trainee and progresses through hours flown. Each rank unlocks new aircraft, routes, and responsibilities — tracked with your personal crew card.</p>
+                <ul class="fade fade-d3">
+                    <li>Hours tracked per flight log</li>
+                    <li>New aircraft ratings at each tier</li>
+                    <li>Route access expands with rank</li>
+                    <li>Staff positions open at Tier 4+</li>
+                    <li>Chief Pilot earns a gold card</li>
                 </ul>
             </div>
-            <div class="apply-form reveal reveal-delay-2">
+            <div class="cards-list">
+                <!-- T1 -->
+                <div class="rank-card card-t1 fade fade-d1">
+                    <div class="card-top">
+                        <span class="card-brand">Virtual Blue</span>
+                        <span class="card-tier-num">Tier 1</span>
+                    </div>
+                    <div class="card-chip"></div>
+                    <div class="card-bottom">
+                        <div>
+                            <div class="card-rank">Trainee Pilot</div>
+                            <div class="card-sub">A220-300 · Regional</div>
+                        </div>
+                        <div class="card-hrs">
+                            <strong>0</strong>hours req.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T2 -->
+                <div class="rank-card card-t2 fade fade-d2">
+                    <div class="card-top">
+                        <span class="card-brand">Virtual Blue</span>
+                        <span class="card-tier-num">Tier 2</span>
+                    </div>
+                    <div class="card-chip"></div>
+                    <div class="card-bottom">
+                        <div>
+                            <div class="card-rank">Second Officer</div>
+                            <div class="card-sub">A320-200 · Mainline</div>
+                        </div>
+                        <div class="card-hrs">
+                            <strong>25</strong>hours req.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T3 -->
+                <div class="rank-card card-t3 fade fade-d3">
+                    <div class="card-top">
+                        <span class="card-brand">Virtual Blue</span>
+                        <span class="card-tier-num">Tier 3</span>
+                    </div>
+                    <div class="card-chip"></div>
+                    <div class="card-bottom">
+                        <div>
+                            <div class="card-rank">First Officer</div>
+                            <div class="card-sub">A321neo · Mint Service</div>
+                        </div>
+                        <div class="card-hrs">
+                            <strong>75</strong>hours req.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T4 -->
+                <div class="rank-card card-t4 fade fade-d4">
+                    <div class="card-top">
+                        <span class="card-brand">Virtual Blue</span>
+                        <span class="card-tier-num">Tier 4</span>
+                    </div>
+                    <div class="card-chip"></div>
+                    <div class="card-bottom">
+                        <div>
+                            <div class="card-rank">Captain</div>
+                            <div class="card-sub">Full Fleet · All Routes</div>
+                        </div>
+                        <div class="card-hrs">
+                            <strong>150</strong>hours req.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T5 -->
+                <div class="rank-card card-t5 fade fade-d5">
+                    <div class="card-top">
+                        <span class="card-brand">Virtual Blue</span>
+                        <span class="card-tier-num">Tier 5</span>
+                    </div>
+                    <div class="card-chip"></div>
+                    <div class="card-bottom">
+                        <div>
+                            <div class="card-rank">Senior Captain</div>
+                            <div class="card-sub">Leadership Track</div>
+                        </div>
+                        <div class="card-hrs">
+                            <strong>300</strong>hours req.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- T6 -->
+                <div class="rank-card card-t6 fade fade-d1">
+                    <div class="card-top">
+                        <span class="card-brand">Virtual Blue</span>
+                        <span class="card-tier-num">Tier 6</span>
+                    </div>
+                    <div class="card-chip"></div>
+                    <div class="card-bottom">
+                        <div>
+                            <div class="card-rank">Chief Pilot</div>
+                            <div class="card-sub">Gold Card · Platinum Elite</div>
+                        </div>
+                        <div class="card-hrs">
+                            <strong>500</strong>hours req.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STAFF -->
+<section class="section" id="staff">
+    <div class="wrap">
+        <div class="section-head">
+            <p class="section-tag fade">Leadership</p>
+            <h2 class="fade fade-d1">The team behind Virtual Blue.</h2>
+        </div>
+        <div class="staff-grid fade fade-d2">
+            <div class="staff-item">
+                <div class="staff-initials" style="background:var(--blue);">CEO</div>
+                <p class="staff-role">Chief Executive Officer</p>
+                <p class="staff-name">Your Name</p>
+                <p class="staff-ifc">@IFC_Username</p>
+            </div>
+            <div class="staff-item">
+                <div class="staff-initials" style="background:#0057b8;">COO</div>
+                <p class="staff-role">Chief Operating Officer</p>
+                <p class="staff-name">Staff Name</p>
+                <p class="staff-ifc">@IFC_Username</p>
+            </div>
+            <div class="staff-item">
+                <div class="staff-initials" style="background:var(--sky);">CFO</div>
+                <p class="staff-role">Chief Flight Operations</p>
+                <p class="staff-name">Staff Name</p>
+                <p class="staff-ifc">@IFC_Username</p>
+            </div>
+            <div class="staff-item">
+                <div class="staff-initials" style="background:#007b75;">HR</div>
+                <p class="staff-role">Human Resources</p>
+                <p class="staff-name">Staff Name</p>
+                <p class="staff-ifc">@IFC_Username</p>
+            </div>
+            <div class="staff-item">
+                <div class="staff-initials" style="background:#5c1fb3;">TR</div>
+                <p class="staff-role">Training Director</p>
+                <p class="staff-name">Staff Name</p>
+                <p class="staff-ifc">@IFC_Username</p>
+            </div>
+            <div class="staff-item">
+                <div class="staff-initials" style="background:#9a5800;">MK</div>
+                <p class="staff-role">Marketing Director</p>
+                <p class="staff-name">Staff Name</p>
+                <p class="staff-ifc">@IFC_Username</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- APPLY -->
+<section class="section" id="apply">
+    <div class="wrap">
+        <div class="apply-layout">
+            <div class="apply-left">
+                <p class="section-tag fade">Join the Crew</p>
+                <h2 class="fade fade-d1">We're looking for pilots who take it seriously.</h2>
+                <p class="lead fade fade-d2">Not just in the air — but in how you communicate, how you follow procedures, and how you treat the community. If that's you, we'd love to have you.</p>
+                <div class="reqs fade fade-d3">
+                    <div class="req">
+                        <div class="req-dot"></div>
+                        <p>Minimum Grade 2 on Infinite Flight (Grade 3+ preferred)</p>
+                    </div>
+                    <div class="req">
+                        <div class="req-dot"></div>
+                        <p>Valid Infinite Flight Community (IFC) account</p>
+                    </div>
+                    <div class="req">
+                        <div class="req-dot"></div>
+                        <p>Active in Infinite Flight at least once per week</p>
+                    </div>
+                    <div class="req">
+                        <div class="req-dot"></div>
+                        <p>Willingness to follow VA operations guidelines</p>
+                    </div>
+                    <div class="req">
+                        <div class="req-dot"></div>
+                        <p>Positive, respectful attitude in all community spaces</p>
+                    </div>
+                </div>
+            </div>
+            <div class="apply-form fade fade-d2">
                 <h3>Pilot Application</h3>
                 <div class="form-row">
-                    <div class="form-group">
+                    <div class="fg">
                         <label>IFC Username</label>
                         <input type="text" placeholder="@Username" required>
                     </div>
-                    <div class="form-group">
+                    <div class="fg">
                         <label>Display Name</label>
                         <input type="text" placeholder="Full name" required>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label>IF Flight Hours</label>
+                    <div class="fg">
+                        <label>Flight Hours</label>
                         <input type="number" placeholder="e.g. 500" required>
                     </div>
-                    <div class="form-group">
+                    <div class="fg">
                         <label>IF Grade</label>
                         <select required>
-                            <option value="">Select grade…</option>
+                            <option value="">Select…</option>
                             <option>Grade 2</option>
                             <option>Grade 3</option>
                             <option>Grade 4</option>
@@ -1686,7 +1282,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="fg">
                     <label>Preferred Hub</label>
                     <select>
                         <option>KJFK — New York</option>
@@ -1696,86 +1292,68 @@
                         <option>KMCO — Orlando</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>Tell us about yourself</label>
-                    <textarea placeholder="Why do you want to join Virtual Blue? Any previous VA experience?"></textarea>
+                <div class="fg">
+                    <label>Why Virtual Blue?</label>
+                    <textarea placeholder="Tell us a bit about yourself and any previous VA experience…"></textarea>
                 </div>
-                <button class="form-submit" onclick="alert('Thank you for applying! Our recruitment team will review your application and reach out via IFC within 48 hours.'); return false;">
-                    Submit Application →
+                <button class="submit-btn" onclick="alert('Application received. Our team will follow up via IFC within 48 hours.'); return false;">
+                    Submit Application
                 </button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ─── FOOTER ────────────────────────────────────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
-    <div class="footer-inner">
-        <div class="footer-brand">
-            <div class="nav-logo-text">Virtual <span style="color:var(--blue-300)">Blue</span></div>
-            <p>A premier JetBlue-inspired virtual airline operating within Infinite Flight. Not affiliated with JetBlue Airways Corporation.</p>
+    <div class="wrap">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="logo">Virtual <span>Blue</span></a>
+                <p>A JetBlue-inspired virtual airline on Infinite Flight. Not affiliated with JetBlue Airways Corporation.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Airline</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#fleet">Fleet</a></li>
+                        <li><a href="#routes">Routes</a></li>
+                        <li><a href="#ranks">Ranks</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Crew</h4>
+                    <ul>
+                        <li><a href="#staff">Staff</a></li>
+                        <li><a href="#apply">Apply</a></li>
+                        <li><a href="#">Pilot Portal</a></li>
+                        <li><a href="#">Discord</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">IFC Thread</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="footer-col">
-            <h4>Navigate</h4>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#fleet">Our Fleet</a></li>
-                <li><a href="#routes">Routes & Hubs</a></li>
-                <li><a href="#ranks">Rank System</a></li>
-            </ul>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Virtual Blue VA. All rights reserved.</span>
+            <span>Infinite Flight · IFVARB Compliant · Not affiliated with JetBlue Airways or Infinite Flight LLC</span>
         </div>
-        <div class="footer-col">
-            <h4>Crew</h4>
-            <ul>
-                <li><a href="#staff">Staff Team</a></li>
-                <li><a href="#apply">Apply Now</a></li>
-                <li><a href="#">Pilot Portal</a></li>
-                <li><a href="#">Discord Server</a></li>
-            </ul>
-        </div>
-        <div class="footer-col">
-            <h4>Community</h4>
-            <ul>
-                <li><a href="#">IFC Thread</a></li>
-                <li><a href="#">Flight Tracker</a></li>
-                <li><a href="#">Events</a></li>
-                <li><a href="#">Contact Staff</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <span>&copy; 2026 Virtual Blue VA. All rights reserved.</span>
-        <span>Built for Infinite Flight · Not affiliated with JetBlue Airways or Infinite Flight LLC · <a href="#">IFVARB Compliant</a></span>
     </div>
 </footer>
 
 <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.12 });
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
 
-    reveals.forEach(el => observer.observe(el));
-
-    // Smooth nav active states
-    const sections = document.querySelectorAll('section[id], header');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(s => {
-            if (window.scrollY >= s.offsetTop - 100) current = s.id || '';
-        });
-        navLinks.forEach(a => {
-            a.style.background = a.getAttribute('href') === '#' + current
-                ? 'rgba(255,255,255,0.12)' : '';
-        });
-    });
+    document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 </script>
 
 </body>
