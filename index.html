@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Virtual Blue — Infinite Flight Virtual Airline</title>
+    <link rel="icon" type="image/png" href="logo-removebg-preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -43,9 +44,10 @@
             top: 0; left: 0; right: 0;
             z-index: 100;
             background: var(--blue);
-            height: 60px;
+            height: 64px;
             display: flex;
             align-items: center;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.18);
         }
 
         .nav-wrap {
@@ -68,8 +70,10 @@
 
         .logo span { color: #7ec8f0; }
 
-        .nav-logo { height: 38px; width: auto; display: block; }
-        .footer-logo { height: 30px; width: auto; display: block; margin-bottom: 0.6rem; }
+        .nav-logo { height: 42px; width: auto; display: block; }
+        .nav-logo-icon { height: 30px; width: auto; display: block; }
+        .footer-logo { height: 36px; width: auto; display: block; margin-bottom: 0.5rem; }
+        .footer-icon-logo { height: 40px; width: auto; display: block; margin-top: 0.75rem; opacity: 0.7; }
 
         .nav-links {
             list-style: none;
@@ -103,7 +107,7 @@
         }
 
         .hero {
-            padding-top: 60px;
+            padding-top: 64px;
             height: 100vh;
             min-height: 600px;
             display: grid;
@@ -167,9 +171,9 @@
         .btn-outline { background: transparent; border-color: rgba(255,255,255,0.35); color: var(--white); }
         .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
 
-        .hero-right { position: relative; overflow: hidden; background: linear-gradient(165deg, #9fbcd6 0%, #bad2e4 48%, #d8e7f2 100%); display: flex; align-items: center; justify-content: center; }
+        .hero-right { position: relative; overflow: hidden; background: linear-gradient(165deg, #0a2a6e 0%, #1a4fa8 48%, #2d6ec8 100%); display: flex; align-items: center; justify-content: center; padding: 3rem 2rem 2.5rem; }
         .hero-right img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; padding: 1.5rem; }
-        .hero-right .hero-icon { width: 72%; height: auto; mix-blend-mode: multiply; padding: 0; }
+        .hero-right .hero-icon { width: 80%; height: auto; padding: 0; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.4)); }
 
         .ticker {
             background: var(--off-white);
@@ -458,6 +462,15 @@
 
         .submit-btn:hover { background: var(--blue-mid); }
 
+        .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+
+        .live-flights-embed {
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,48,135,0.13);
+            border: 1px solid var(--border);
+        }
+
         footer { background: var(--ink); padding: 3rem 0 2rem; }
 
         .footer-top {
@@ -470,6 +483,7 @@
         }
 
         .footer-brand .logo { font-size: 1rem; }
+        .footer-brand-logos { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.25rem; }
         .footer-brand a { display: inline-block; }
         .footer-brand p { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 0.6rem; max-width: 260px; line-height: 1.6; }
         .footer-links { display: flex; gap: 3rem; }
@@ -507,7 +521,7 @@
         @media (max-width: 768px) {
             .hero               { grid-template-columns: 1fr; }
             .hero-right         { display: none; }
-            .hero-left          { padding: 3rem 1.5rem; }
+            .hero-left          { padding: 3rem 1.5rem 3rem; }
             .about-grid         { grid-template-columns: 1fr; }
             .fleet-grid         { grid-template-columns: 1fr; }
             .hubs               { grid-template-columns: 1fr 1fr; }
@@ -791,6 +805,16 @@
             background-size: 20px 20px;
         }
 
+        /* Hero-right radial glow behind logo */
+        .hero-right-accent {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 55% 50%, rgba(126,200,240,0.22) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero-right .hero-icon { position: relative; z-index: 1; }
+
         /* ── Hero-left barcode overlay ───────────────────────────── */
         .hero-left { position: relative; overflow: hidden; }
         .hero-left::before {
@@ -920,8 +944,8 @@
 
         /* Floating hero swoosh — gentle lift, like an aircraft on the wind */
         @keyframes hero-float {
-            0%, 100% { transform: translateY(0); }
-            50%      { transform: translateY(-16px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50%      { transform: translateY(-10px) scale(1.012); }
         }
         .hero-right .hero-icon { animation: hero-float 6s ease-in-out infinite; }
 
@@ -971,12 +995,15 @@
 
 <nav>
     <div class="nav-wrap">
-        <a href="#"><img src="assets/logo-banner.png" alt="Virtual Blue" class="nav-logo"></a>
+        <a href="#" class="nav-brand">
+            <img src="assets/logo-banner.png" alt="Virtual Blue" class="nav-logo">
+        </a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#fleet">Fleet</a></li>
             <li><a href="#liveries">Liveries</a></li>
             <li><a href="#routes">Routes</a></li>
+            <li><a href="#flights">Live Flights</a></li>
             <li><a href="#ranks">Ranks</a></li>
             <li><a href="#staff">Staff</a></li>
             <li><a href="#apply" class="nav-join">Join Now</a></li>
@@ -995,7 +1022,8 @@
         </div>
     </div>
     <div class="hero-right">
-        <img src="assets/logo-icon.jpg" alt="Virtual Blue" class="hero-icon">
+        <img src="logo-removebg-preview.png" alt="Virtual Blue" class="hero-icon">
+        <div class="hero-right-accent" aria-hidden="true"></div>
     </div>
 </section>
 
@@ -1213,6 +1241,26 @@
     </div>
 </section>
 
+<div class="livery-band lb-mosaic" aria-hidden="true"></div>
+
+<section class="section" id="flights" style="background:var(--off-white);">
+    <div class="wrap">
+        <div class="section-head">
+            <p class="section-tag fade">Live Tracker</p>
+            <h2 class="fade fade-d1">Virtual Blue in the air, right now.</h2>
+            <p class="lead fade fade-d2">Track our crew flying live across the globe on the Infinite Flight network.</p>
+        </div>
+        <div class="live-flights-embed fade fade-d2">
+            <iframe
+              src="https://inflight.info/embed.html?token=tok_d232960bec5c86ca73edbb6a6bb2688a"
+              style="width:100%;height:520px;border:0;border-radius:12px;overflow:hidden"
+              loading="lazy"
+              title="Live Flights">
+            </iframe>
+        </div>
+    </div>
+</section>
+
 <div class="livery-band lb-stripes" aria-hidden="true"></div>
 
 <section class="section" id="ranks">
@@ -1324,12 +1372,15 @@
     <div class="wrap">
         <div class="footer-top">
             <div class="footer-brand">
-                <a href="#"><img src="assets/logo-banner.png" alt="Virtual Blue" class="footer-logo"></a>
+                <div class="footer-brand-logos">
+                    <a href="#"><img src="logo-removebg-preview.png" alt="Virtual Blue icon" class="footer-icon-logo" style="height:42px;opacity:0.9;"></a>
+                    <a href="#"><img src="assets/logo-banner.png" alt="Virtual Blue" class="footer-logo" style="margin-bottom:0;"></a>
+                </div>
                 <p>A JetBlue-inspired virtual airline on Infinite Flight. Not affiliated with JetBlue Airways Corporation.</p>
             </div>
             <div class="footer-links">
-                <div class="footer-col"><h4>Airline</h4><ul><li><a href="#about">About</a></li><li><a href="#fleet">Fleet</a></li><li><a href="#routes">Routes</a></li><li><a href="#ranks">Ranks</a></li></ul></div>
-                <div class="footer-col"><h4>Crew</h4><ul><li><a href="#staff">Staff</a></li><li><a href="#apply">Apply</a></li><li><a href="#">Pilot Portal</a></li><li><a href="#">Discord</a></li></ul></div>
+                <div class="footer-col"><h4>Airline</h4><ul><li><a href="#about">About</a></li><li><a href="#fleet">Fleet</a></li><li><a href="#liveries">Liveries</a></li><li><a href="#routes">Routes</a></li><li><a href="#ranks">Ranks</a></li></ul></div>
+                <div class="footer-col"><h4>Crew</h4><ul><li><a href="#staff">Staff</a></li><li><a href="#apply">Apply</a></li><li><a href="#flights">Live Flights</a></li><li><a href="#">Pilot Portal</a></li><li><a href="#">Discord</a></li></ul></div>
                 <div class="footer-col"><h4>Community</h4><ul><li><a href="#">IFC Thread</a></li><li><a href="#">Events</a></li><li><a href="#">Contact</a></li></ul></div>
             </div>
         </div>
