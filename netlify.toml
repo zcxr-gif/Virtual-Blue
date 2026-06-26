@@ -1,0 +1,22 @@
+# Netlify configuration for Virtual Blue
+# Static site — the repository root is published as-is (no build step).
+
+[build]
+  publish = "."
+  command = ""
+
+# Deploy Previews are generated automatically for every pull request
+# once the repo is connected to Netlify (Site settings → Build & deploy).
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Long-cache the static image assets (they're content-stable)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
