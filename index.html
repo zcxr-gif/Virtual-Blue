@@ -155,8 +155,8 @@
         .btn-outline { background: transparent; border-color: rgba(255,255,255,0.35); color: var(--white); }
         .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
 
-        .hero-right { position: relative; overflow: hidden; }
-        .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+        .hero-right { position: relative; overflow: hidden; background: linear-gradient(165deg, #9fbcd6 0%, #bad2e4 48%, #d8e7f2 100%); display: flex; align-items: center; justify-content: center; }
+        .hero-right img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; padding: 1.5rem; }
 
         .ticker {
             background: var(--off-white);
@@ -710,6 +710,185 @@
         @media (max-width: 520px) {
             .liveries-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* ── Livery Pattern Bands (section dividers) ────────────── */
+        .livery-band { height: 12px; }
+
+        .lb-barcode {
+            background: #009BDE;
+            background-image: repeating-linear-gradient(
+                90deg,
+                #003087 0,    #003087 2px,
+                transparent   2px,  transparent   5px,
+                #003087 5px,  #003087 8px,
+                transparent   8px,  transparent  11px,
+                #003087 11px, #003087 15px,
+                transparent  15px,  transparent  17px,
+                #003087 17px, #003087 18px,
+                transparent  18px,  transparent  22px,
+                #003087 22px, #003087 25px,
+                transparent  25px,  transparent  27px,
+                #003087 27px, #003087 28px,
+                transparent  28px,  transparent  32px
+            );
+        }
+
+        .lb-dots {
+            background: #daeef8;
+            background-image: radial-gradient(circle, #003087 2.5px, transparent 2.5px);
+            background-size: 12px 12px;
+        }
+
+        .lb-harlequin {
+            background: #003087;
+            background-image:
+                linear-gradient(135deg, #2a7bbf 25%, transparent 25%),
+                linear-gradient(225deg, #2a7bbf 25%, transparent 25%),
+                linear-gradient(315deg, #2a7bbf 25%, transparent 25%),
+                linear-gradient(45deg,  #2a7bbf 25%, transparent 25%);
+            background-size: 28px 28px;
+        }
+
+        .lb-stripes {
+            background: #7ec8f0;
+            background-image: repeating-linear-gradient(
+                0deg, transparent, transparent 4px,
+                rgba(0,48,135,0.45) 4px, rgba(0,48,135,0.45) 6px
+            );
+        }
+
+        .lb-blocks {
+            background: repeating-conic-gradient(
+                #003087 0% 25%, #009BDE 25% 50%, #7ec8f0 50% 75%, #0050b3 75% 100%
+            ) 0 0 / 18px 18px;
+        }
+
+        .lb-mosaic {
+            background: repeating-conic-gradient(
+                #003087 0% 25%, #005cbf 25% 50%, #003f99 50% 75%, #0050b3 75% 100%
+            ) 0 0 / 10px 10px;
+        }
+
+        .lb-windowpane {
+            background: #b6daf0;
+            background-image:
+                linear-gradient(#003087 1.5px, transparent 1.5px),
+                linear-gradient(90deg, #003087 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+        }
+
+        /* ── Hero-left barcode overlay ───────────────────────────── */
+        .hero-left { position: relative; overflow: hidden; }
+        .hero-left::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: repeating-linear-gradient(
+                90deg,
+                rgba(0,155,222,0.12) 0,    rgba(0,155,222,0.12) 2px,
+                transparent              2px,  transparent             5px,
+                rgba(0,155,222,0.12) 5px,  rgba(0,155,222,0.12) 8px,
+                transparent              8px,  transparent            11px,
+                rgba(0,155,222,0.12) 11px, rgba(0,155,222,0.12) 15px,
+                transparent             15px,  transparent            17px,
+                rgba(0,155,222,0.12) 17px, rgba(0,155,222,0.12) 18px,
+                transparent             18px,  transparent            22px,
+                rgba(0,155,222,0.12) 22px, rgba(0,155,222,0.12) 25px,
+                transparent             25px,  transparent            27px,
+                rgba(0,155,222,0.12) 27px, rgba(0,155,222,0.12) 28px,
+                transparent             28px,  transparent            32px
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero-left > * { position: relative; z-index: 1; }
+
+        /* ── Routes section harlequin overlay ───────────────────── */
+        #routes { position: relative; overflow: hidden; }
+        #routes::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(135deg, rgba(126,200,240,0.12) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(126,200,240,0.12) 25%, transparent 25%),
+                linear-gradient(315deg, rgba(126,200,240,0.12) 25%, transparent 25%),
+                linear-gradient(45deg,  rgba(126,200,240,0.12) 25%, transparent 25%);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        #routes .wrap { position: relative; z-index: 1; }
+
+        /* ── Apply section dots overlay ─────────────────────────── */
+        #apply { position: relative; overflow: hidden; }
+        #apply::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: radial-gradient(circle, rgba(0,48,135,0.065) 2.5px, transparent 2.5px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        #apply .wrap { position: relative; z-index: 1; }
+
+        /* ── Ghost tail fins (decorative background accents) ─────── */
+        #about { position: relative; overflow: hidden; }
+        #about::after {
+            content: '';
+            position: absolute;
+            left: -80px; bottom: -120px;
+            width: 360px; height: 439px;
+            clip-path: polygon(5% 100%, 0% 62%, 18% 2%, 100% 18%, 100% 100%);
+            background: #daeef8;
+            background-image: radial-gradient(circle, #003087 2.5px, transparent 2.5px);
+            background-size: 12px 12px;
+            opacity: 0.32;
+            pointer-events: none;
+        }
+
+        #fleet { position: relative; overflow: hidden; }
+        #fleet::after {
+            content: '';
+            position: absolute;
+            right: -60px; top: -100px;
+            width: 420px; height: 512px;
+            clip-path: polygon(5% 100%, 0% 62%, 18% 2%, 100% 18%, 100% 100%);
+            background: repeating-conic-gradient(
+                #003087 0% 25%, #009BDE 25% 50%, #7ec8f0 50% 75%, #0050b3 75% 100%
+            ) 0 0 / 18px 18px;
+            opacity: 0.065;
+            pointer-events: none;
+        }
+
+        #apply::after {
+            content: '';
+            position: absolute;
+            right: -40px; bottom: -80px;
+            width: 300px; height: 366px;
+            clip-path: polygon(5% 100%, 0% 62%, 18% 2%, 100% 18%, 100% 100%);
+            background: #b6daf0;
+            background-image:
+                linear-gradient(#003087 1.5px, transparent 1.5px),
+                linear-gradient(90deg, #003087 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+            opacity: 0.22;
+            pointer-events: none;
+        }
+
+        #staff { position: relative; overflow: hidden; }
+        #staff::after {
+            content: '';
+            position: absolute;
+            right: -50px; top: -80px;
+            width: 320px; height: 390px;
+            clip-path: polygon(5% 100%, 0% 62%, 18% 2%, 100% 18%, 100% 100%);
+            background: #003087;
+            background-image:
+                radial-gradient(circle at 55% 55%, rgba(180,210,240,0.28) 18%, transparent 19%),
+                radial-gradient(circle at 55% 55%, rgba(180,210,240,0.14) 38%, transparent 39%),
+                radial-gradient(circle at 55% 55%, rgba(180,210,240,0.08) 57%, transparent 58%);
+            opacity: 0.1;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -753,6 +932,8 @@
     </div>
 </div>
 
+<div class="livery-band lb-barcode" aria-hidden="true"></div>
+
 <section class="section" id="about">
     <div class="wrap">
         <div class="about-grid">
@@ -770,6 +951,8 @@
         </div>
     </div>
 </section>
+
+<div class="livery-band lb-dots" aria-hidden="true"></div>
 
 <section class="section" id="fleet">
     <div class="wrap">
@@ -834,6 +1017,8 @@
         </div>
     </div>
 </section>
+
+<div class="livery-band lb-mosaic" aria-hidden="true"></div>
 
 <section class="section" id="liveries">
     <div class="wrap">
@@ -932,6 +1117,8 @@
     </div>
 </section>
 
+<div class="livery-band lb-harlequin" aria-hidden="true"></div>
+
 <section class="section" id="routes">
     <div class="wrap">
         <div class="section-head">
@@ -949,6 +1136,8 @@
         <p class="routes-note fade">Full route map available to registered crew members in the pilot portal.</p>
     </div>
 </section>
+
+<div class="livery-band lb-stripes" aria-hidden="true"></div>
 
 <section class="section" id="ranks">
     <div class="wrap">
@@ -1001,6 +1190,8 @@
     </div>
 </section>
 
+<div class="livery-band lb-blocks" aria-hidden="true"></div>
+
 <section class="section" id="staff">
     <div class="wrap">
         <div class="section-head">
@@ -1017,6 +1208,8 @@
         </div>
     </div>
 </section>
+
+<div class="livery-band lb-windowpane" aria-hidden="true"></div>
 
 <section class="section" id="apply">
     <div class="wrap">
