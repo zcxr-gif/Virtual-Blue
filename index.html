@@ -511,6 +511,205 @@
             .ticker-inner { flex-wrap: wrap; }
             .ticker-item { flex: 0 0 50%; border-bottom: 1px solid var(--border); }
         }
+
+        /* ── Liveries ─────────────────────────────────────────── */
+        #liveries { background: var(--white); }
+
+        .liveries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem 1.5rem;
+        }
+
+        .livery-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .tail-fin {
+            width: 100%;
+            aspect-ratio: 0.82;
+            clip-path: polygon(5% 100%, 0% 62%, 18% 2%, 100% 18%, 100% 100%);
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            padding-top: 28%;
+            padding-left: 20%;
+            box-sizing: border-box;
+        }
+
+        .fin-logo {
+            font-size: 0.52rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.3px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+            white-space: nowrap;
+            line-height: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        .fin-logo .bl { color: #7ec8f0; }
+        .fin-logo.dark { color: #003087; text-shadow: none; }
+        .fin-logo.dark .bl { color: #009BDE; }
+
+        .livery-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--ink);
+            text-align: center;
+            letter-spacing: -0.1px;
+        }
+
+        /* ── Patterns ───────────────────────────── */
+
+        /* Barcode — dark-blue vertical bars of varying widths on sky-blue */
+        .p-barcode {
+            background: #009BDE;
+            background-image: repeating-linear-gradient(
+                90deg,
+                #003087 0,    #003087 2px,
+                transparent   2px,  transparent   5px,
+                #003087 5px,  #003087 8px,
+                transparent   8px,  transparent  11px,
+                #003087 11px, #003087 15px,
+                transparent  15px,  transparent  17px,
+                #003087 17px, #003087 18px,
+                transparent  18px,  transparent  22px,
+                #003087 22px, #003087 25px,
+                transparent  25px,  transparent  27px,
+                #003087 27px, #003087 28px,
+                transparent  28px,  transparent  32px
+            );
+        }
+
+        /* Blueberries — dark-blue circles on pale-blue */
+        .p-blueberries {
+            background: #cce8f5;
+            background-image:
+                radial-gradient(circle, #003087 5px, transparent 5px),
+                radial-gradient(circle, #0050b3 7px, transparent 7px),
+                radial-gradient(circle, #003087 4px, transparent 4px),
+                radial-gradient(circle, #0050b3 5px, transparent 5px);
+            background-size: 30px 30px, 46px 46px, 22px 22px, 36px 36px;
+            background-position: 2px 4px, 20px 18px, 14px 10px, 7px 24px;
+        }
+
+        /* Mosaic — 4-shade blue pixel grid */
+        .p-mosaic {
+            background: repeating-conic-gradient(
+                #003087 0% 25%,
+                #005cbf 25% 50%,
+                #003f99 50% 75%,
+                #0050b3 75% 100%
+            ) 0 0 / 10px 10px;
+        }
+
+        /* Bubbles — open circles (ring outlines) on pale-blue */
+        .p-bubbles {
+            background: #e6f3fa;
+            background-image:
+                radial-gradient(circle, transparent 34%, rgba(0,80,179,0.28) 34%, rgba(0,80,179,0.28) 46%, transparent 46%),
+                radial-gradient(circle, transparent 30%, rgba(0,48,135,0.22) 30%, rgba(0,48,135,0.22) 44%, transparent 44%),
+                radial-gradient(circle, transparent 32%, rgba(0,100,180,0.25) 32%, rgba(0,100,180,0.25) 45%, transparent 45%);
+            background-size: 38px 38px, 28px 28px, 22px 22px;
+            background-position: 0 0, 15px 14px, 30px 5px;
+        }
+
+        /* Windowpane — thin blue grid lines on light-blue */
+        .p-windowpane {
+            background: #b6daf0;
+            background-image:
+                linear-gradient(#003087 1.5px, transparent 1.5px),
+                linear-gradient(90deg, #003087 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+        }
+
+        /* DOTS — small evenly-spaced dark-blue dots on pale-blue */
+        .p-dots {
+            background: #daeef8;
+            background-image: radial-gradient(circle, #003087 2.5px, transparent 2.5px);
+            background-size: 12px 12px;
+        }
+
+        /* Harlequin — diamond argyle in two blues */
+        .p-harlequin {
+            background: #003087;
+            background-image:
+                linear-gradient(135deg, #2a7bbf 25%, transparent 25%),
+                linear-gradient(225deg, #2a7bbf 25%, transparent 25%),
+                linear-gradient(315deg, #2a7bbf 25%, transparent 25%),
+                linear-gradient(45deg,  #2a7bbf 25%, transparent 25%);
+            background-size: 28px 28px;
+        }
+
+        /* Stripes — horizontal bands on sky-blue */
+        .p-stripes {
+            background: #7ec8f0;
+            background-image: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 8px,
+                rgba(0,48,135,0.45) 8px,
+                rgba(0,48,135,0.45) 11px
+            );
+        }
+
+        /* Boston Red Sox — silver fin with subtle red diagonal weave */
+        .p-boston {
+            background: linear-gradient(145deg, #dcdcdc, #c0c0c0);
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 5px,
+                rgba(196,18,48,0.18) 5px,
+                rgba(196,18,48,0.18) 6px
+            );
+        }
+
+        /* NY's Hometown Airline — clean white with very faint grid */
+        .p-ny {
+            background: #ffffff;
+            background-image:
+                linear-gradient(rgba(0,48,135,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,48,135,0.06) 1px, transparent 1px);
+            background-size: 14px 14px;
+        }
+
+        /* Building Blocks — 4-color tiled squares */
+        .p-blocks {
+            background: repeating-conic-gradient(
+                #003087 0% 25%,
+                #009BDE 25% 50%,
+                #7ec8f0 50% 75%,
+                #0050b3 75% 100%
+            ) 0 0 / 18px 18px;
+        }
+
+        /* 10th Anniversary — concentric ring glow on navy */
+        .p-anniversary {
+            background: #003087;
+            background-image:
+                radial-gradient(circle at 55% 55%, rgba(180,210,240,0.28) 18%, transparent 19%),
+                radial-gradient(circle at 55% 55%, rgba(180,210,240,0.14) 38%, transparent 39%),
+                radial-gradient(circle at 55% 55%, rgba(180,210,240,0.08) 57%, transparent 58%),
+                radial-gradient(circle at 55% 55%, rgba(180,210,240,0.04) 76%, transparent 77%);
+        }
+
+        @media (max-width: 1024px) {
+            .liveries-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .liveries-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem 0.75rem; }
+        }
+
+        @media (max-width: 520px) {
+            .liveries-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
@@ -521,6 +720,7 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#fleet">Fleet</a></li>
+            <li><a href="#liveries">Liveries</a></li>
             <li><a href="#routes">Routes</a></li>
             <li><a href="#ranks">Ranks</a></li>
             <li><a href="#staff">Staff</a></li>
@@ -631,6 +831,103 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="liveries">
+    <div class="wrap">
+        <div class="section-head">
+            <p class="section-tag fade">Liveries</p>
+            <h2 class="fade fade-d1">12 tails. One airline.</h2>
+            <p class="lead fade fade-d2">Every Virtual Blue aircraft wears one of JetBlue's iconic tail designs — each pattern with its own story at 35,000 feet.</p>
+        </div>
+        <div class="liveries-grid">
+
+            <div class="livery-card fade fade-d1">
+                <div class="tail-fin p-barcode">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Barcode</p>
+            </div>
+
+            <div class="livery-card fade fade-d2">
+                <div class="tail-fin p-blueberries">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Blueberries</p>
+            </div>
+
+            <div class="livery-card fade fade-d3">
+                <div class="tail-fin p-mosaic">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Mosaic</p>
+            </div>
+
+            <div class="livery-card fade fade-d4">
+                <div class="tail-fin p-bubbles">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Bubbles</p>
+            </div>
+
+            <div class="livery-card fade fade-d1">
+                <div class="tail-fin p-windowpane">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Windowpane</p>
+            </div>
+
+            <div class="livery-card fade fade-d2">
+                <div class="tail-fin p-dots">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">DOTS</p>
+            </div>
+
+            <div class="livery-card fade fade-d3">
+                <div class="tail-fin p-harlequin">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Harlequin</p>
+            </div>
+
+            <div class="livery-card fade fade-d4">
+                <div class="tail-fin p-stripes">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Stripes</p>
+            </div>
+
+            <div class="livery-card fade fade-d1">
+                <div class="tail-fin p-boston">
+                    <span class="fin-logo dark">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Boston Red Sox</p>
+            </div>
+
+            <div class="livery-card fade fade-d2">
+                <div class="tail-fin p-ny">
+                    <span class="fin-logo dark">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">NY's Hometown Airline</p>
+            </div>
+
+            <div class="livery-card fade fade-d3">
+                <div class="tail-fin p-blocks">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">Building Blocks</p>
+            </div>
+
+            <div class="livery-card fade fade-d4">
+                <div class="tail-fin p-anniversary">
+                    <span class="fin-logo">jet<span class="bl">Blue</span></span>
+                </div>
+                <p class="livery-name">10th Anniversary</p>
+            </div>
+
         </div>
     </div>
 </section>
