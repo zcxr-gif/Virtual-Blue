@@ -39,6 +39,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ── NAV ────────────────────────────────────────────── */
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -106,6 +107,7 @@
             background: #e8f0ff !important;
         }
 
+        /* ── HERO ───────────────────────────────────────────── */
         .hero {
             padding-top: 64px;
             height: 100vh;
@@ -175,6 +177,7 @@
         .hero-right img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; padding: 1.5rem; }
         .hero-right .hero-icon { width: 80%; height: auto; padding: 0; filter: drop-shadow(0 24px 48px rgba(0,0,0,0.4)); }
 
+        /* ── TICKER BAR ─────────────────────────────────────────── */
         .ticker {
             background: var(--off-white);
             border-bottom: 1px solid var(--border);
@@ -195,7 +198,28 @@
         .ticker-num { font-size: 1.75rem; font-weight: 800; color: var(--blue); letter-spacing: -1px; line-height: 1; }
         .ticker-label { font-size: 0.75rem; color: var(--gray); font-weight: 500; margin-top: 3px; }
 
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .ticker-num {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--blue);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .ticker-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 500;
+            margin-top: 3px;
+        }
+
+        /* ── SHARED ───────────────────────────────────────────── */
+        .wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         .section { padding: 5rem 0; }
 
         .section-tag {
@@ -218,6 +242,7 @@
         .lead { font-size: 1rem; color: var(--gray); line-height: 1.75; max-width: 520px; margin-top: 0.75rem; }
         .section-head { margin-bottom: 3rem; }
 
+        /* ── ABOUT ──────────────────────────────────────────── */
         #about { background: var(--white); }
 
         .about-grid {
@@ -246,6 +271,7 @@
             letter-spacing: 0.5px;
         }
 
+        /* ── FLEET ──────────────────────────────────────────── */
         #fleet { background: var(--off-white); }
 
         .fleet-grid {
@@ -275,6 +301,7 @@
         .fleet-meta-val { font-size: 0.95rem; font-weight: 700; color: var(--blue); }
         .fleet-meta-key { font-size: 0.68rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
 
+        /* ── ROUTES ─────────────────────────────────────────── */
         #routes { background: var(--blue); }
         #routes h2 { color: var(--white); }
         #routes .section-tag { color: #7ec8f0; }
@@ -298,6 +325,47 @@
         .hub-pill { margin-top: 1rem; display: inline-block; font-size: 0.62rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 3px; background: rgba(0,155,222,0.2); color: #7ec8f0; }
         .routes-note { margin-top: 1.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
 
+        .hub-code {
+            font-size: 1.75rem;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .hub-airport {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            margin: 0.35rem 0 0.2rem;
+            line-height: 1.3;
+        }
+
+        .hub-city {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .hub-pill {
+            margin-top: 1rem;
+            display: inline-block;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 0.2rem 0.55rem;
+            border-radius: 3px;
+            background: rgba(0,155,222,0.2);
+            color: #7ec8f0;
+        }
+
+        .routes-note {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ── RANKS ──────────────────────────────────────────── */
         #ranks { background: var(--off-white); }
 
         .ranks-intro {
@@ -363,6 +431,7 @@
         .card-hrs  { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-align: right; }
         .card-hrs strong { display: block; font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.85); }
 
+        /* ── STAFF ──────────────────────────────────────────── */
         #staff { background: var(--white); }
 
         .staff-grid {
@@ -394,6 +463,7 @@
         .staff-name { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.2rem; }
         .staff-ifc { font-size: 0.8rem; color: var(--gray); }
 
+        /* ── APPLY ──────────────────────────────────────────── */
         #apply { background: var(--off-white); }
 
         .apply-layout {
@@ -462,13 +532,10 @@
 
         .submit-btn:hover { background: var(--blue-mid); }
 
-        .nav-brand { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
-
-        .live-flights-embed {
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0,48,135,0.13);
-            border: 1px solid var(--border);
+        /* ── FOOTER ─────────────────────────────────────────── */
+        footer {
+            background: var(--ink);
+            padding: 3rem 0 2rem;
         }
 
         footer { background: var(--ink); padding: 3rem 0 2rem; }
@@ -503,7 +570,12 @@
             gap: 0.5rem;
         }
 
-        .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        /* ── FADE IN ──────────────────────────────────────────── */
+        .fade {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
         .fade.in { opacity: 1; transform: none; }
         .fade-d1 { transition-delay: 0.08s; }
         .fade-d2 { transition-delay: 0.16s; }
@@ -511,6 +583,7 @@
         .fade-d4 { transition-delay: 0.32s; }
         .fade-d5 { transition-delay: 0.40s; }
 
+        /* ── RESPONSIVE ─────────────────────────────────────────── */
         @media (max-width: 1024px) {
             .fleet-grid { grid-template-columns: repeat(2, 1fr); }
             .hubs       { grid-template-columns: repeat(3, 1fr); }
@@ -1022,8 +1095,7 @@
         </div>
     </div>
     <div class="hero-right">
-        <img src="logo-removebg-preview.png" alt="Virtual Blue" class="hero-icon">
-        <div class="hero-right-accent" aria-hidden="true"></div>
+        <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N3062J-1775817334625.webp" alt="JetBlue A220-300 in flight">
     </div>
 </section>
 
@@ -1049,7 +1121,7 @@
                 <a href="#apply" class="btn btn-white fade fade-d3" style="background:var(--blue);color:var(--white);">Apply Now</a>
             </div>
             <div class="about-img fade fade-d2">
-                <img src="assets/e190-blueprint.webp" alt="JetBlue E190 Blueprint livery">
+                <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N373JB-1774946569619.webp" alt="JetBlue E190 Blueprint livery">
                 <div class="about-img-tag">Est. 2026 · Infinite Flight</div>
             </div>
         </div>
@@ -1062,12 +1134,14 @@
     <div class="wrap">
         <div class="section-head">
             <p class="section-tag fade">The Fleet</p>
-            <h2 class="fade fade-d1">Four aircraft. One standard.</h2>
+            <h2 class="fade fade-d1">Six aircraft. One standard.</h2>
             <p class="lead fade fade-d2">Our fleet mirrors JetBlue's real operation — every aircraft available within Infinite Flight, from regional hops to transcontinental Mint service.</p>
         </div>
         <div class="fleet-grid">
             <div class="fleet-card fade fade-d1">
-                <div class="fleet-photo"><img src="assets/a220.webp" alt="JetBlue Airbus A220-300"></div>
+                <div class="fleet-photo">
+                    <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N3062J-1775817334625.webp" alt="JetBlue Airbus A220-300">
+                </div>
                 <div class="fleet-body">
                     <p class="fleet-type">Narrowbody</p>
                     <p class="fleet-name">Airbus A220-300</p>
@@ -1080,7 +1154,9 @@
                 </div>
             </div>
             <div class="fleet-card fade fade-d2">
-                <div class="fleet-photo"><img src="assets/a320.webp" alt="JetBlue Airbus A320-200"></div>
+                <div class="fleet-photo">
+                    <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N558JB-1781823036627.webp" alt="JetBlue Airbus A320-200">
+                </div>
                 <div class="fleet-body">
                     <p class="fleet-type">Narrowbody</p>
                     <p class="fleet-name">Airbus A320-200</p>
@@ -1093,16 +1169,56 @@
                 </div>
             </div>
             <div class="fleet-card fade fade-d3">
-                <div class="fleet-photo"><img src="assets/e190.webp" alt="JetBlue Embraer E190"></div>
+                <div class="fleet-photo">
+                    <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N794JB-1775655695918.webp" alt="JetBlue A320 Shantay livery">
+                </div>
+                <div class="fleet-body">
+                    <p class="fleet-type">Narrowbody</p>
+                    <p class="fleet-name">Airbus A320 — Shantay</p>
+                    <p class="fleet-desc">Special livery variant of our A320 fleet. The Shantay scheme is one of JetBlue's most recognized tail designs.</p>
+                    <div class="fleet-meta">
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">162</div>
+                            <div class="fleet-meta-key">Seats</div>
+                        </div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">3,300 nm</div>
+                            <div class="fleet-meta-key">Range</div>
+                        </div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">Short–Med</div>
+                            <div class="fleet-meta-key">Haul</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fleet-card fade fade-d4">
+                <div class="fleet-photo">
+                    <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N373JB-1774946566311.webp" alt="JetBlue Embraer E190">
+                </div>
                 <div class="fleet-body">
                     <p class="fleet-type">Regional Jet</p>
                     <p class="fleet-name">Embraer E190</p>
                     <p class="fleet-desc">Our regional workhorse. Connects smaller markets and secondary cities where the bigger jets can't go.</p>
                     <div class="fleet-meta">
-                        <div class="fleet-meta-item"><div class="fleet-meta-val">100</div><div class="fleet-meta-key">Seats</div></div>
-                        <div class="fleet-meta-item"><div class="fleet-meta-val">2,400 nm</div><div class="fleet-meta-key">Range</div></div>
-                        <div class="fleet-meta-item"><div class="fleet-meta-val">Short</div><div class="fleet-meta-key">Haul</div></div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">100</div>
+                            <div class="fleet-meta-key">Seats</div>
+                        </div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">2,400 nm</div>
+                            <div class="fleet-meta-key">Range</div>
+                        </div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">Short</div>
+                            <div class="fleet-meta-key">Haul</div>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="fleet-card fade fade-d5">
+                <div class="fleet-photo">
+                    <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N982JB-1773335328239.webp" alt="JetBlue Airbus A321neo">
                 </div>
             </div>
             <div class="fleet-card fade fade-d4">
@@ -1115,6 +1231,30 @@
                         <div class="fleet-meta-item"><div class="fleet-meta-val">200</div><div class="fleet-meta-key">Seats</div></div>
                         <div class="fleet-meta-item"><div class="fleet-meta-val">4,000 nm</div><div class="fleet-meta-key">Range</div></div>
                         <div class="fleet-meta-item"><div class="fleet-meta-val">Med–Long</div><div class="fleet-meta-key">Haul</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="fleet-card fade fade-d1">
+                <div class="fleet-photo">
+                    <img src="https://thebucketstorage2.s3.us-east-2.amazonaws.com/community-aircraft/N983JT-1767906694298.webp" alt="JetBlue special livery">
+                </div>
+                <div class="fleet-body">
+                    <p class="fleet-type">Narrowbody</p>
+                    <p class="fleet-name">Airbus A320 — Special</p>
+                    <p class="fleet-desc">One of our special-scheme aircraft. Every unique livery tells a story — this one flies it proudly.</p>
+                    <div class="fleet-meta">
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">162</div>
+                            <div class="fleet-meta-key">Seats</div>
+                        </div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">3,300 nm</div>
+                            <div class="fleet-meta-key">Range</div>
+                        </div>
+                        <div class="fleet-meta-item">
+                            <div class="fleet-meta-val">Short–Med</div>
+                            <div class="fleet-meta-key">Haul</div>
+                        </div>
                     </div>
                 </div>
             </div>
